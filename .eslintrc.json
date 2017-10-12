@@ -1,20 +1,30 @@
 {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "node": true
     },
-    "extends": ["plugin:react/recommended", "eslint:recommended"],
+    "extends": ["airbnb", "plugin:flowtype/recommended"],
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
-            "jsx": true
+            "jsx": true,
+            "modules": true
         },
         "sourceType": "module"
     },
+    "globals": {},
     "plugins": [
-        "react"
+        "react",
+        "flowtype"
     ],
     "rules": {
+        "jsx-a11y/anchor-is-valid": [ "error", {
+          "components": [ "Link" ]
+        }],
+        "react/jsx-uses-vars": [2],
+        "react/prop-types": [0],
         "no-unused-vars": [2],
         "indent": [
             "error",
@@ -31,6 +41,12 @@
         "semi": [
             "error",
             "never"
-        ]
+        ],
+        "flowtype/define-flow-type": 2,
+        "jsx-a11y/anchor-is-valid": [ "off", {
+            "aspects": [ "noHref" ]
+          }],
+        "flowtype/no-types-missing-file-annotation": 2,
+        "no-underscore-dangle": ["off"]
     }
 }
