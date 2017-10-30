@@ -29,8 +29,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
-    }),
-    new ExtractTextPlugin('style.css', {allChunks: true})
+    })
   ],
 
   module: {
@@ -44,11 +43,7 @@ module.exports = {
         test: /\.jsx$/,
         loader: "babel",
         exclude: /node_modules/
-      },
-      {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('css!autoprefixer?browsers=last 2 versions!sass')
-      },
+      }
     ]
   }
 

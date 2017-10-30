@@ -8,8 +8,6 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import storeConfig from './store'
 import routes from './routes'
 import rootSaga from './middleware/sagaRoot'
-import Bookshelf from './components/Bookshelf'
-import Book from './components/Book'
 
 const preloadedState = window.__PRELOADED_STATE__
 delete window.__PRELOADED_STATE__

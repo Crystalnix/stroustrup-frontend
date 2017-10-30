@@ -1,5 +1,10 @@
 // @flow
-import * as types from '../constants/ActionTypes'
+import {
+  REQUEST_BOOK,
+  RECEIVE_BOOK,
+  REQUEST_ADD_BOOK,
+  RECEIVE_ADD_BOOK,
+} from '../constants/ActionTypes'
 import type { BookType } from '../types'
 
 const initialState: BookType = {
@@ -10,12 +15,23 @@ const initialState: BookType = {
 
 const bookReducer = (state: BookType = initialState, action: any): BookType => {
   switch (action.type) {
-  case types.REQUEST_BOOK:
+  case REQUEST_ADD_BOOK:
     return {
       ...state,
       isFetching: true,
     }
-  case types.RECEIVE_BOOK:
+  case RECEIVE_ADD_BOOK:
+    return {
+      id: action.book.objectId,
+      name: action.book.name,
+      isFetching: false,
+    }
+  case REQUEST_BOOK:
+    return {
+      ...state,
+      isFetching: true,
+    }
+  case RECEIVE_BOOK:
     return {
       id: action.book.objectId,
       name: action.book.name,
