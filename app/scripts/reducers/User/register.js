@@ -1,10 +1,8 @@
 // @flow
-import { REQUEST_REGISTER, RECEIVE_REGISTER } from '../constants/ActionTypes'
-import type { RegisterFormReducerType } from '../types'
+import { REQUEST_REGISTER, RECEIVE_REGISTER } from '../../constants/ActionTypes'
+import type { RegisterFormReducerType } from '../../types'
 
 const initialState: RegisterFormReducerType = {
-  email: '',
-  password: '',
   registerIsFetching: false,
 }
 

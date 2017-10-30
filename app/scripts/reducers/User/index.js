@@ -1,6 +1,9 @@
 // @flow
-import { SET_USER, DELETE_USER } from '../constants/ActionTypes'
-import type { UserType } from '../types'
+import { SET_USER, DELETE_USER } from '../../constants/ActionTypes'
+import type { UserType } from '../../types'
+import { combineReducers } from 'redux'
+import login from './login'
+import register from './register'
 
 const emptyUser = {
   token: '',

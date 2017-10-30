@@ -2,7 +2,6 @@
 export type BookType = {
   name: string,
   id: string,
-  isFetching: boolean,
 }
 
 export type BookshelfBookType = {

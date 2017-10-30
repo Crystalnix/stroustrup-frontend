@@ -1,10 +1,8 @@
 // @flow
-import { REQUEST_LOGIN, RECEIVE_LOGIN } from '../constants/ActionTypes'
-import type { LoginFormReducerType } from '../types'
+import { REQUEST_LOGIN, RECEIVE_LOGIN } from '../../constants/ActionTypes'
+import type { LoginFormReducerType } from '../../types'
 
 const initialState: LoginFormReducerType = {
-  email: '',
-  password: '',
   loginIsFetching: false,
 }
 

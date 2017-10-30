@@ -4,16 +4,16 @@ import {
   RECEIVE_BOOK,
   REQUEST_ADD_BOOK,
   RECEIVE_ADD_BOOK,
-} from '../constants/ActionTypes'
-import type { BookType } from '../types'
+} from '../../constants/ActionTypes'
+import type { BookReducerType } from './types'
 
-const initialState: BookType = {
+const initialState: BookReducerType = {
   id: '',
   name: '',
   isFetching: false,
 }
 
-const bookReducer = (state: BookType = initialState, action: any): BookType => {
+const bookReducer = (state: BookReducerType = initialState, action: any): BookReducerType => {
   switch (action.type) {
   case REQUEST_ADD_BOOK:
     return {
