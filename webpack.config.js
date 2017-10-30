@@ -5,7 +5,7 @@ let ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   devtool: "cheap-module-eval-source-map",
-  watch: true,
+  watch: false,
   entry: [
     'babel-polyfill',
     './app/scripts/client'
@@ -43,6 +43,20 @@ module.exports = {
         test: /\.jsx$/,
         loader: "babel",
         exclude: /node_modules/
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        loader: "file",
+        options: {
+          name: 'assets/[name].[ext]'
+        }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: "style" },
+          { loader: "css"}
+        ]
       }
     ]
   }

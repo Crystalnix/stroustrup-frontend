@@ -4,6 +4,7 @@ import Card from 'material-ui/Card/Card'
 import CardTitle from 'material-ui/Card/CardTitle'
 import CardMedia from 'material-ui/Card/CardMedia'
 import { Book as styles } from '../style'
+import image from '../../../../images/jsBook.jpg'
 
 class Book extends React.PureComponent {
   render() {
@@ -17,7 +18,7 @@ class Book extends React.PureComponent {
             <img
               style={styles.image}
               alt="Book pic"
-              src="/assets/jsBook.jpg"
+              src={`/${image}`}
             />
           </CardMedia>
           <CardTitle title={this.props.name} subtitle="by Author" />
