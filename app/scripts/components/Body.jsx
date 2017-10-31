@@ -16,7 +16,6 @@ const styles = new (function () {
 
   this.containerDrawerOpen = {
     ...this.containerMarginTop,
-    marginLeft: '200px',
   }
 })()
 

@@ -4,18 +4,17 @@ import { withRouter } from 'react-router'
 import AppBar from 'material-ui/AppBar'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Responsive from 'react-responsive'
 import { deleteUser } from '../../actions/User'
 import { closeDrawer } from '../../actions/Drawer'
 import Login from './Login'
 import Logout from './Logout'
 import { Header as styles } from './style'
+import {
+  Desktop,
+  Tablet,
+  Mobile,
+} from '../Responsive'
 import type { Props } from './types'
-
-const Desktop = props => <Responsive {...props} minWidth={992} />
-const Tablet = props => <Responsive {...props} minWidth={768} maxWidth={991} />
-const Mobile = props => <Responsive {...props} maxWidth={767} />
-const Default = props => <Responsive {...props} minWidth={768} />
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -34,7 +33,7 @@ class Header extends React.Component<Props> {
     if (!this.props.user.isAuth) this.props.closeDrawer()
   }
   render() {
-    let appBarPropsDesktop = {
+    const appBarPropsDesktop = {
       title: 'Straustrup Library',
       iconElementRight: this.props.user.isAuth ?
         <Logout deleteUser={this.props.deleteUser} /> :
@@ -45,9 +44,26 @@ class Header extends React.Component<Props> {
       onTitleTouchTap: () => { this.props.router.push('/book') },
       elevation: 16,
     }
+    const appBarPropsTablet = {
+      ...appBarPropsDesktop,
+      showMenuIconButton: true,
+      iconElementRight: <div>tablet</div>,
+    }
+    const appBarPropsMobile = {
+      ... appBarPropsTablet,
+      iconElementRight: <div>mobile</div>,
+    }
     return (
       <header>
-        <AppBar {...appBarPropsDesktop} />
+        <Desktop>
+          <AppBar {...appBarPropsDesktop} />
+        </Desktop>
+        <Tablet>
+          <AppBar {...appBarPropsTablet} />
+        </Tablet>
+        <Mobile>
+          <AppBar {...appBarPropsMobile} />
+        </Mobile>
       </header>
     )
   }

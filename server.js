@@ -46,7 +46,7 @@ function renderFullPage() {
     <html>
       <head>
         <title>Straustrup Library</title>
-        <link rel="stylesheet" href="/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
       </head>
       <body>
         <div id="root"></div>
