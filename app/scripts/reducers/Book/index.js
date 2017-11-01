@@ -4,6 +4,8 @@ import {
   RECEIVE_BOOK,
   REQUEST_ADD_BOOK,
   RECEIVE_ADD_BOOK,
+  REQUEST_BOOK_ISBN,
+  RECEIVE_BOOK_ISBN,
 } from '../../constants/ActionTypes'
 import type { BookReducerType } from './types'
 
@@ -35,6 +37,16 @@ const bookReducer = (state: BookReducerType = initialState, action: any): BookRe
     return {
       id: action.book.objectId,
       name: action.book.name,
+      isFetching: false,
+    }
+  case REQUEST_BOOK_ISBN:
+    return {
+      ...state,
+      isFetching: true,
+    }
+  case RECEIVE_BOOK_ISBN:
+    return {
+      ...state,
       isFetching: false,
     }
   default:

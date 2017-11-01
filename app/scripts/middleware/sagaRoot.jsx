@@ -16,5 +16,6 @@ export default function* rootSaga() {
     takeEvery(types.REQUEST_BOOK, sagas.receiveBookSaga),
     takeEvery(types.REQUEST_REGISTER, sagas.receiveRegisterSaga),
     takeEvery(types.REQUEST_ADD_BOOK, sagas.receiveAddBookSaga),
+    takeEvery(types.REQUEST_BOOK_ISBN, sagas.receiveBookIsbnSaga),
   ])
 }

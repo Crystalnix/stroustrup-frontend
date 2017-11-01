@@ -4,6 +4,7 @@ import { receiveBookshelf } from '../actions/Bookshelf'
 import {
   receiveBook,
   receiveAddBook,
+  receiveBookIsbn,
 } from '../actions/Book'
 import { receiveRegister } from '../actions/Register'
 import { receiveLogin } from '../actions/Login'
@@ -95,4 +96,18 @@ export function* receiveAddBookSaga(action) {
   } catch (error) {
     return error.message
   }
+}
+
+export function* receiveBookIsbnSaga(action) {
+  console.log(action.isbn)
+  const config = {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+    },
+  }
+  const result = yield axios.get(`${API.ISBN}${action.isbn}`, config)
+  console.log(result)
+  yield put(receiveBookIsbn())
+  return 0
 }

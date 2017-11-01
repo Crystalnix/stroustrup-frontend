@@ -7,7 +7,7 @@ import {
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { RaisedButton } from 'material-ui'
 import { connect } from 'react-redux'
-import { requestAddBook } from '../actions/Book'
+import { requestBookIsbn } from '../actions/Book'
 
 const required = value => (value == null ? 'Required' : undefined)
 
@@ -18,12 +18,12 @@ const form = {
 const selector = formValueSelector('addBook')
 
 const mapStateToProps = state => ({
-  name: selector(state, 'name'),
+  isbn: selector(state, 'isbn'),
   token: state.user.token,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  requestAddBook,
+  requestBookIsbn,
 }, dispatch)
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 class AddBook extends React.Component {
   handleClick = (event) => {
     event.preventDefault()
-    this.props.requestAddBook(this.props.name, this.props.token)
+    this.props.requestBookIsbn(this.props.isbn)
   }
 
   render() {
@@ -40,10 +40,10 @@ class AddBook extends React.Component {
         <form>
           <div>
             <Field
-              name="name"
+              name="isbn"
               component={TextField}
-              hintText="Name"
-              floatingLabelText="Name"
+              hintText="ISBN"
+              floatingLabelText="ISBN"
               validate={[required]}
             />
           </div>
