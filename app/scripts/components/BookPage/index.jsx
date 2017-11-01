@@ -2,12 +2,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { css } from 'aphrodite'
 import { requestBook } from '../../actions/Book'
 import BookType from '../../types'
 import Loading from '../Loading'
 import styles from './style'
 import Header from './Header/index'
 import Article from './Article/index'
+import { Desktop, Tablet, Mobile } from '../Responsive'
 
 type Props = {
   requestBook: () => mixed,
@@ -37,9 +39,25 @@ class BookPage extends React.Component<Props> {
       )
     }
     return (
-      <div style={styles.container}>
-        <Header book={this.props.book} />
-        <Article />
+      <div>
+        <Desktop>
+          <div className={css(styles.containerDesktop)}>
+            <Header book={this.props.book} />
+            <Article />
+          </div>
+        </Desktop>
+        <Tablet>
+          <div className={css(styles.containerTablet)}>
+            <Header book={this.props.book} />
+            <Article />
+          </div>
+        </Tablet>
+        <Mobile>
+          <div className={css(styles.containerMobile)}>
+            <Header book={this.props.book} />
+            <Article />
+          </div>
+        </Mobile>
       </div>
     )
   }

@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aphrodite": "^1.2.5",
     "autoprefixer-loader": "^3.2.0",
     "axios": "^0.5.4",
     "babel-core": "^6.26.0",
@@ -51,7 +52,7 @@
     "redux-form-material-ui": "^4.3.0",
     "redux-saga": "^0.15.6",
     "redux-thunk": "^2.2.0",
-    "webpack": "^3.6.0",
+    "webpack": "^3.8.0",
     "webpack-dev-server": "^2.9.1"
   },
   "devDependencies": {

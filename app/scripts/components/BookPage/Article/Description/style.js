@@ -1,21 +1,31 @@
-const styles = {
-  closed: {
+import { StyleSheet } from 'aphrodite'
+
+const descriptionStyles = StyleSheet.create({
+  description: {
     position: 'relative',
-    maxHeight: '160px',
     overflow: 'hidden',
-    transition: 'all 0.3s linear 0',
+  },
+  closed: {
+    maxHeight: '80px',
   },
   opened: {
     maxHeight: '500px',
   },
-  buttonOpen: {
+  buttonContainer: {
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'center',
+    backgroundColor: '#ffffff',
+  },
+  button: {
+    marginTop: '10px',
+  },
+  buttonOpened: {
     display: 'none',
   },
-  buttonClose: {
-    position: 'absolute',
-    bottom: '0',
-    border: 'none',
-  }
-}
+  buttonClosed: {
+    display: 'block',
+  },
+})
 
-export default styles
+export default descriptionStyles
