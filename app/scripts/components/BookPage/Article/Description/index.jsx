@@ -1,18 +1,32 @@
 import React from 'react'
 import styles from './style'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import openDescription from '../../../../actions/Description'
 
+const mapStateToProps = state => ({
+  description: state.description
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  openDescription
+}, dispatch)
+
+@connect(mapStateToProps, mapDispatchToProps)
 class Description extends React.Component {
   clickHandle = (e) => {
-    console.log(e)
+    this.props.openDescription()
   }
 
   render() {
     return (
       <div
-        style={
-          this.props.opened ?
-            styles.opened :
-            styles.closed
+        style={this.props.description ?
+          {
+            ...styles.closed,
+            ...styles.opened,
+          } :
+          styles.closed
         }
       >
         <p>
@@ -34,7 +48,13 @@ class Description extends React.Component {
           who want to level up and learn how to architect
           JavaScript applications from the ground up.
         </p>
-        <button onClick={this.clickHandle}>show</button>
+        <button 
+          style={
+            this.props.description ?
+              styles.buttonOpen :
+              styles.buttonClose
+          }
+          onClick={this.clickHandle}>show</button>
       </div>
     )
   }

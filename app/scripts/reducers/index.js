@@ -8,6 +8,7 @@ import register from './User/register'
 import login from './User/login'
 import user from './User/index'
 import drawer from './drawer'
+import description from './description'
 //?!!?!!!?!??!?!??!!???!?!?!!!!?!?!?!?!?!?!?!?!?
 export const reducers = combineReducers({
   routing: routerReducer,
@@ -16,6 +17,7 @@ export const reducers = combineReducers({
   register,
   login,
   user,
+  description,
   drawer,
   form: formReduser,
 })
