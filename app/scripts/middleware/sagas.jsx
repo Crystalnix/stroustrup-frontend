@@ -100,14 +100,35 @@ export function* receiveAddBookSaga(action) {
 
 export function* receiveBookIsbnSaga(action) {
   console.log(action.isbn)
-  const config = {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
-    },
-  }
-  const result = yield axios.get(`${API.ISBN}${action.isbn}`, config)
-  console.log(result)
-  yield put(receiveBookIsbn())
+  // const config = {
+  //   headers: {
+  //     'Access-Control-Allow-Origin': '*',
+  //     'Content-Type': 'application/json',
+  //   },
+  // }
+  // const result = yield axios.get(`${API.ISBN}${action.isbn}`, config)
+
+  // NEED_REQUEST_THROW_BACKEND!
+  // const url = 'https://query.yahooapis.com/v1/public/yql?q=select'
+  // + '* from json where url="http://isbndb.com/api/v2/json/7K390PBY/book/9781491950296"'
+  // + '&format=json&diagnostics=true'
+  const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${action.isbn}`
+  const result = (yield axios({
+    method: 'GET',
+    url,
+  })).data.items[0].volumeInfo
+  console.log(result);
+  // yield put(receiveBook({
+  //   id: '',
+  //   title: result.title,
+  //   subtitle: result.subtitle,
+  //   author: result.authors[0],
+  //   image: result.imageLinks.thumbnail,
+  //   publisher: result.publisher,
+  //   date: result.publishedDate,
+  //   count: result.pageCount,
+  //   description: result.description,
+  // }))
+  // yield put(receiveBookIsbn())
   return 0
 }

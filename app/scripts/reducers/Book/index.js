@@ -11,8 +11,13 @@ import type { BookReducerType } from './types'
 
 const initialState: BookReducerType = {
   id: '',
-  name: '',
+  title: '',
+  author: '',
+  summary: '',
+  notes: '',
+  publisher: '',
   isFetching: false,
+  isbnIsFetching: true,
 }
 
 const bookReducer = (state: BookReducerType = initialState, action: any): BookReducerType => {
@@ -24,9 +29,9 @@ const bookReducer = (state: BookReducerType = initialState, action: any): BookRe
     }
   case RECEIVE_ADD_BOOK:
     return {
-      id: action.book.objectId,
-      name: action.book.name,
+      ...state,
       isFetching: false,
+      isbnIsFetching: true,
     }
   case REQUEST_BOOK:
     return {
@@ -35,9 +40,14 @@ const bookReducer = (state: BookReducerType = initialState, action: any): BookRe
     }
   case RECEIVE_BOOK:
     return {
-      id: action.book.objectId,
-      name: action.book.name,
+      id: action.book.objectId || '',
+      title: action.book.title || '',
+      author: action.book.author || '',
+      summary: action.book.summary || '',
+      notes: action.book.notes || '',
+      publisher: action.book.publisher || '',
       isFetching: false,
+      isbnIsFetching: true,
     }
   case REQUEST_BOOK_ISBN:
     return {
@@ -48,6 +58,7 @@ const bookReducer = (state: BookReducerType = initialState, action: any): BookRe
     return {
       ...state,
       isFetching: false,
+      isbnIsFetching: false,
     }
   default:
     return state

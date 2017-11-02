@@ -4,21 +4,21 @@ import { reduxForm, Field, formValueSelector } from 'redux-form'
 import {
   TextField,
 } from 'redux-form-material-ui'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { RaisedButton } from 'material-ui'
 import { connect } from 'react-redux'
-import { requestBookIsbn } from '../actions/Book'
+import { requestBookIsbn } from '../../../actions/Book'
 
 const required = value => (value == null ? 'Required' : undefined)
 
 const form = {
-  form: 'addBook',
+  form: 'isbnForm',
 }
 
-const selector = formValueSelector('addBook')
+const selector = formValueSelector('isbnForm')
 
 const mapStateToProps = state => ({
   isbn: selector(state, 'isbn'),
+  book: state.book,
   token: state.user.token,
 })
 
@@ -28,7 +28,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 @connect(mapStateToProps, mapDispatchToProps)
 @reduxForm(form)
-class AddBook extends React.Component {
+class IsbnForm extends React.Component {
   handleClick = (event) => {
     event.preventDefault()
     this.props.requestBookIsbn(this.props.isbn)
@@ -36,28 +36,26 @@ class AddBook extends React.Component {
 
   render() {
     return (
-      <MuiThemeProvider>
-        <form>
-          <div>
-            <Field
-              name="isbn"
-              component={TextField}
-              hintText="ISBN"
-              floatingLabelText="ISBN"
-              validate={[required]}
-            />
-          </div>
-          <div>
-            <RaisedButton
-              onClick={this.handleClick}
-              primary={true}
-              label="Add Book"
-            />
-          </div>
-        </form>
-      </MuiThemeProvider>
+      <form>
+        <div>
+          <Field
+            name="isbn"
+            component={TextField}
+            hintText="ISBN"
+            floatingLabelText="ISBN"
+            validate={[required]}
+          />
+        </div>
+        <div>
+          <RaisedButton
+            onClick={this.handleClick}
+            primary={true}
+            label="Add Book"
+          />
+        </div>
+      </form>
     )
   }
 }
 
-export default AddBook
+export default IsbnForm

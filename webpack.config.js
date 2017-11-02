@@ -15,6 +15,11 @@ module.exports = {
     filename: "bundle.js"
   },
 
+  watchOptions: {
+    aggregateTimeout: 100,
+    poll: 1000
+  },
+
   resolveLoader: {
     modules: ["node_modules"],
     extensions: [".js", ".json"],

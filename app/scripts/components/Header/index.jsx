@@ -50,7 +50,7 @@ class Header extends React.Component<Props> {
       iconElementRight: <div>tablet</div>,
     }
     const appBarPropsMobile = {
-      ... appBarPropsTablet,
+      ...appBarPropsTablet,
       iconElementRight: <div>mobile</div>,
     }
     return (

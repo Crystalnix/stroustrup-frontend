@@ -4,7 +4,7 @@ import {
   RECEIVE_BOOK,
   REQUEST_ADD_BOOK,
   RECEIVE_ADD_BOOK,
-  REQUEST_BOOK_ISBN,
+  REQUEST_BOOK_ISBN, RECEIVE_BOOK_ISBN,
 } from '../constants/ActionTypes'
 import type { BookType } from '../types'
 
@@ -32,14 +32,13 @@ export function requestBookIsbn(isbn: string): { type: string, isbn: string } {
 
 export function receiveBookIsbn(): { type: string } {
   return {
-    type: REQUEST_BOOK_ISBN,
+    type: RECEIVE_BOOK_ISBN,
   }
 }
 
-export function requestAddBook(name: string, token: string): { type: string, name: string, token: string } {
+export function requestAddBook(book: any, token: string): { type: string, token: string } {
   return {
     type: REQUEST_ADD_BOOK,
-    name,
     token,
   }
 }

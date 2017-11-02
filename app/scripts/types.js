@@ -1,7 +1,11 @@
 // @flow
 export type BookType = {
-  name: string,
   id: string,
+  title: string,
+  author: string,
+  summary: string,
+  notes: string,
+  publisher: string,
 }
 
 export type BookshelfBookType = {

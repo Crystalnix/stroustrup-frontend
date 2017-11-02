@@ -6,7 +6,7 @@ import Login from './components/Login'
 import Bookshelf from './components/Bookshelf'
 import BookPage from './components/BookPage'
 import Profile from './components/Profile'
-import AddBook from './components/AddBook'
+import AddBook from './components/AddBook/index'
 import { userIsAuthenticated, userIsNotAuthenticated } from './auth'
 
 const routes = (
