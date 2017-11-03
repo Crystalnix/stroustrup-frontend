@@ -11,7 +11,7 @@ class App extends React.Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div style={{position: 'absolute'}}>
+        <div style={{position: 'absolute', width: '100%'}}>
           <Header />
           <Body>
             {this.props.children}

@@ -6,17 +6,20 @@ import styles from './style'
 import { Default, Mobile } from '../../Responsive'
 
 class Aricle extends PureComponent {
+  componentWillMount() {
+    console.log(this.props);
+  }
   render() {
     return (
       <div>
         <Default>
           <Paper className={css(styles.paper)}>
-            <Description opened={false} />
+            <Description text={this.props.book.description} opened={false} />
           </Paper>
         </Default>
         <Mobile>
           <Paper className={css(styles.paper, styles.paperMobile)}>
-            <Description opened={false} />
+            <Description text={this.props.book.description} opened={false} />
           </Paper>
         </Mobile>
       </div>

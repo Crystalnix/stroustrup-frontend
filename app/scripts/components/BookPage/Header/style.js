@@ -13,8 +13,6 @@ const bookHeaderStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   image: {
-    width: '250px',
-    height: '300px',
   },
   title: {
     marginLeft: '30px',

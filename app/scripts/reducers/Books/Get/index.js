@@ -1,9 +1,7 @@
-// @flow
 import {
   REQUEST_BOOK,
   RECEIVE_BOOK,
 } from '../../../constants/ActionTypes'
-import type { GetReducer } from './types'
 
 const initialState: GetReducer = {
   id: '',
@@ -19,7 +17,7 @@ const initialState: GetReducer = {
   isFetching: false,
 }
 
-const getReducer = (state: GetReducer = initialState, action: any): GetReducer => {
+const getReducer = (state = initialState, action) => {
   switch (action.type) {
 
   case REQUEST_BOOK:

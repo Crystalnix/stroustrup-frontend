@@ -1,9 +1,7 @@
 import axios from 'axios'
 import { put } from 'redux-saga/effects'
-import { receiveBookshelf } from '../actions/Bookshelf'
-import {
-  receiveBook,
-} from '../actions/Book'
+import { receiveBookShelf } from '../actions/Books/Shelf/'
+import { receiveBook } from '../actions/Books/Get'
 import { receiveBookIsbn } from '../actions/Books/Isbn'
 import { receiveBookAdd } from '../actions/Books/Add'
 import { receiveRegister } from '../actions/Register'
@@ -11,15 +9,21 @@ import { receiveLogin } from '../actions/Login'
 import API from '../constants/API'
 import { setUser } from '../actions/User'
 
-export function* receiveBookshelfSaga(action) {
+export function* receiveBookShelfSaga(action) {
   const config = {
     headers: {
       'user-token': action.token,
     },
   }
   try {
-    const result = yield axios.get(`${API.BOOK}?sortBy=name`, config)
-    yield put(receiveBookshelf(result.data))
+    const result = yield axios.get(`${API.BOOK}?props=title%2Cauthor%2Cimage&sortBy=created%20desc`, config)
+    const books = result.data.map(item => ({
+      id: item.objectId,
+      title: item.title,
+      author: item.author,
+      image: item.image,
+    }))
+    yield put(receiveBookShelf(books))
   } catch (error) {
     return error.message
   }
@@ -33,8 +37,22 @@ export function* receiveBookSaga(action) {
     },
   }
   try {
+    console.log(123);
     const result = yield axios.get(`${API.BOOK}/${action.id}`, config)
-    yield put(receiveBook(result.data))
+    const book = {
+      id: result.data.objectId,
+      isbn: result.data.isbn,
+      title: result.data.title,
+      subtitle: result.data.subtitle,
+      author: result.data.author,
+      image: result.data.image,
+      publisher: result.data.publisher,
+      date: result.data.published_date,
+      count: result.data.page_count,
+      description: result.data.description,
+    }
+    console.log(book);
+    yield put(receiveBook(book))
   } catch (error) {
     return error.message
   }

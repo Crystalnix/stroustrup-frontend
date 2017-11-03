@@ -1,19 +1,21 @@
-// @flow
-import type { BookshelfType } from '../types'
+import {
+  REQUEST_BOOK_SHELF,
+  RECEIVE_BOOK_SHELF,
+} from '../../../constants/ActionTypes'
 
-const initialState: BookshelfType = {
+const initialState = {
   books: [],
   isFetching: false,
 }
 
-const shelfReducer = (state: BookshelfType = initialState, action: any): BookshelfType => {
+const shelfReducer = (state = initialState, action) => {
   switch (action.type) {
-  case 'REQUEST_BOOKSHELF':
+  case REQUEST_BOOK_SHELF:
     return {
-      ...state,
+      books: [],
       isFetching: true,
     }
-  case 'RECEIVE_BOOKSHELF':
+  case RECEIVE_BOOK_SHELF:
     return {
       books: action.books,
       isFetching: false,
