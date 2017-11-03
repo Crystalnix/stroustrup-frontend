@@ -1,10 +1,12 @@
 import React from 'react'
 import { reduxForm, Field, formValueSelector } from 'redux-form'
+import { bindActionCreators } from 'redux'
 import {
   TextField,
 } from 'redux-form-material-ui'
 import { RaisedButton } from 'material-ui'
 import { connect } from 'react-redux'
+import { requestBookAdd } from '../../../actions/Books/Add'
 
 const required = value => (value == null ? 'Required' : undefined)
 
@@ -12,37 +14,42 @@ const form = {
   form: 'addForm',
 }
 
-const selector = formValueSelector('addForm')
-
 const mapStateToProps = state => ({
-  addFormProps: {
-    title: selector(state, 'title'),
-    author: selector(state, 'author'),
-    summary: selector(state, 'summary'),
-    notes: selector(state, 'notes'),
-    publisher: selector(state, 'publisher'),
-  },
-  initialValues: state.book,
-  book: state.book,
+  initialValues: state.books.isbn,
   token: state.user.token,
 })
 
-@connect(mapStateToProps)
+const mapDispatchToProps = dispatch => bindActionCreators({
+  requestBookAdd,
+}, dispatch)
+
+@connect(mapStateToProps, mapDispatchToProps)
 @reduxForm(form)
 class AddForm extends React.Component {
-  handleClick = (event) => {
-    event.preventDefault()
+  submit = (values) => {
+    if (delete values.isFetching) {
+      this.props.requestBookAdd(values, this.props.token)
+    }
   }
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.props.handleSubmit(this.submit)}>
         <div>
           <Field
             name="title"
             component={TextField}
             hintText="Title"
             floatingLabelText="Title"
+            validate={[required]}
+          />
+        </div>
+        <div>
+          <Field
+            name="subtitle"
+            component={TextField}
+            hintText="Subtitle"
+            floatingLabelText="Subtitle"
             validate={[required]}
           />
         </div>
@@ -57,24 +64,6 @@ class AddForm extends React.Component {
         </div>
         <div>
           <Field
-            name="summary"
-            component={TextField}
-            hintText="Summary"
-            floatingLabelText="Summary"
-            validate={[required]}
-          />
-        </div>
-        <div>
-          <Field
-            name="notes"
-            component={TextField}
-            hintText="Notes"
-            floatingLabelText="Notes"
-            validate={[required]}
-          />
-        </div>
-        <div>
-          <Field
             name="publisher"
             component={TextField}
             hintText="Publisher"
@@ -83,7 +72,35 @@ class AddForm extends React.Component {
           />
         </div>
         <div>
+          <Field
+            name="date"
+            component={TextField}
+            hintText="Date"
+            floatingLabelText="Date"
+            validate={[required]}
+          />
+        </div>
+        <div>
+          <Field
+            name="count"
+            component={TextField}
+            hintText="Count"
+            floatingLabelText="Count"
+            validate={[required]}
+          />
+        </div>
+        <div>
+          <Field
+            name="description"
+            component={TextField}
+            hintText="Description"
+            floatingLabelText="Description"
+            validate={[required]}
+          />
+        </div>
+        <div>
           <RaisedButton
+            type="submit"
             primary={true}
             label="Add Book"
           />

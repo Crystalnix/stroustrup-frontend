@@ -1,11 +1,17 @@
 // @flow
-export type BookType = {
-  id: string,
+export type Book = {
   title: string,
+  subtitle: string,
   author: string,
-  summary: string,
-  notes: string,
+  image: string,
   publisher: string,
+  date: string,
+  count: string,
+  description: string,
+}
+
+export type BookWithId = Book & {
+  id: string,
 }
 
 export type BookshelfBookType = {

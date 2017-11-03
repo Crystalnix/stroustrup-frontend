@@ -1,25 +1,37 @@
 import React from 'react'
+import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import Loading from '../Loading'
 import IsbnForm from './IsbnForm'
 import AddForm from './AddForm/index'
 
 const mapStateToProps = state => ({
-  book: state.book,
+  book: state.books.book,
+  isbn: state.books.isbn,
+  add: state.books.add,
 })
 
+@withRouter
 @connect(mapStateToProps)
 class AddBook extends React.Component {
+  componentWillMount() {
+    console.log(this.props.add.id)
+    if (this.props.add.id !== '') {
+      console.log(this.props.add.id)    
+      this.props.router.push(`/book/${this.props.add.id}`)
+    }
+  }
+
   render() {
-    if (this.props.book.isFetching && this.props.book.isbnIsFetching) {
+    if (!this.props.isbn.isbn && this.props.isbn.isFetching) {
       return (
         <Loading />
       )
-    } else if (!this.props.book.isFetching && this.props.book.isbnIsFetching) {
+    } else if (!this.props.isbn.isbn && !this.props.isbn.isFetching) {
       return (
         <IsbnForm />
       )
-    } else if (!this.props.book.isFetching && !this.props.book.isbnIsFetching) {
+    } else if (this.props.isbn.isbn && !this.props.isbn.isFetching) {
       return (
         <AddForm />
       )
@@ -31,3 +43,4 @@ class AddBook extends React.Component {
 }
 
 export default AddBook
+//9781491950296

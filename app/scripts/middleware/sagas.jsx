@@ -3,9 +3,9 @@ import { put } from 'redux-saga/effects'
 import { receiveBookshelf } from '../actions/Bookshelf'
 import {
   receiveBook,
-  receiveAddBook,
-  receiveBookIsbn,
 } from '../actions/Book'
+import { receiveBookIsbn } from '../actions/Books/Isbn'
+import { receiveBookAdd } from '../actions/Books/Add'
 import { receiveRegister } from '../actions/Register'
 import { receiveLogin } from '../actions/Login'
 import API from '../constants/API'
@@ -78,57 +78,46 @@ export function* receiveLoginSaga(action) {
   return 0
 }
 
-export function* receiveAddBookSaga(action) {
+export function* receiveBookAddSaga(action) {
   try {
     const config = {
       headers: {
         'user-token': action.token,
       },
     }
-    const result = yield axios.post(`${API.BOOK}`, {
-      name: action.name,
-    }, config)
-    const book = {
-      id: result.data.objectId,
-      name: result.data.name,
+    let book = {
+      ...action.book,
+      page_count: `${+action.book.count}`,
+      published_date: action.book.date,
     }
-    yield put(receiveAddBook(book))
+    delete book.date
+    delete book.count
+    const result = yield axios.post(`${API.BOOK}`, book, config)
+    console.log(result.data)
+    yield put(receiveBookAdd(result.data.objectId))
   } catch (error) {
     return error.message
   }
+  return 0
 }
 
 export function* receiveBookIsbnSaga(action) {
-  console.log(action.isbn)
-  // const config = {
-  //   headers: {
-  //     'Access-Control-Allow-Origin': '*',
-  //     'Content-Type': 'application/json',
-  //   },
-  // }
-  // const result = yield axios.get(`${API.ISBN}${action.isbn}`, config)
-
-  // NEED_REQUEST_THROW_BACKEND!
-  // const url = 'https://query.yahooapis.com/v1/public/yql?q=select'
-  // + '* from json where url="http://isbndb.com/api/v2/json/7K390PBY/book/9781491950296"'
-  // + '&format=json&diagnostics=true'
   const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${action.isbn}`
   const result = (yield axios({
     method: 'GET',
     url,
   })).data.items[0].volumeInfo
   console.log(result);
-  // yield put(receiveBook({
-  //   id: '',
-  //   title: result.title,
-  //   subtitle: result.subtitle,
-  //   author: result.authors[0],
-  //   image: result.imageLinks.thumbnail,
-  //   publisher: result.publisher,
-  //   date: result.publishedDate,
-  //   count: result.pageCount,
-  //   description: result.description,
-  // }))
-  // yield put(receiveBookIsbn())
+  yield put(receiveBookIsbn({
+    isbn: action.isbn,
+    title: result.title,
+    subtitle: result.subtitle,
+    author: result.authors[0],
+    image: result.imageLinks.thumbnail,
+    publisher: result.publisher,
+    date: result.publishedDate,
+    count: result.pageCount,
+    description: result.description,
+  }))
   return 0
 }

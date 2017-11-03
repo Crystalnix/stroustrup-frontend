@@ -6,7 +6,7 @@ import {
 } from 'redux-form-material-ui'
 import { RaisedButton } from 'material-ui'
 import { connect } from 'react-redux'
-import { requestBookIsbn } from '../../../actions/Book'
+import { requestBookIsbn } from '../../../actions/Books/Isbn'
 
 const required = value => (value == null ? 'Required' : undefined)
 
@@ -18,8 +18,6 @@ const selector = formValueSelector('isbnForm')
 
 const mapStateToProps = state => ({
   isbn: selector(state, 'isbn'),
-  book: state.book,
-  token: state.user.token,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

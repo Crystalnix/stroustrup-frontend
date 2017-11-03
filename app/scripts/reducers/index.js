@@ -2,8 +2,7 @@ import { reducer as formReduser } from 'redux-form'
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 
-import book from './Book/index'
-import bookshelf from './bookshelf'
+import books from './Books'
 import register from './User/register'
 import login from './User/login'
 import user from './User/index'
@@ -12,8 +11,7 @@ import description from './description'
 //?!!?!!!?!??!?!??!!???!?!?!!!!?!?!?!?!?!?!?!?!?
 export const reducers = combineReducers({
   routing: routerReducer,
-  bookshelf,
-  book,
+  books,
   register,
   login,
   user,

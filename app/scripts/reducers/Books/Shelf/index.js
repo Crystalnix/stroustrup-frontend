@@ -6,7 +6,7 @@ const initialState: BookshelfType = {
   isFetching: false,
 }
 
-const bookshelfReducer = (state: BookshelfType = initialState, action: any): BookshelfType => {
+const shelfReducer = (state: BookshelfType = initialState, action: any): BookshelfType => {
   switch (action.type) {
   case 'REQUEST_BOOKSHELF':
     return {
@@ -23,4 +23,4 @@ const bookshelfReducer = (state: BookshelfType = initialState, action: any): Boo
   }
 }
 
-export default bookshelfReducer
+export default shelfReducer
