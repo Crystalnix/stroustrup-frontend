@@ -6,8 +6,51 @@ import { receiveBookIsbn } from '../actions/Books/Isbn'
 import { receiveBookAdd } from '../actions/Books/Add'
 import { receiveRegister } from '../actions/Register'
 import { receiveLogin } from '../actions/Login'
+import { requestComments, receiveComments } from '../actions/Comments/Get'
+import { receiveCommentAdd } from '../actions/Comments/Add/index'
 import API from '../constants/API'
 import { setUser } from '../actions/User'
+
+export function* receiveCommentAddSaga(action) {
+  const config = {
+    headers: {
+      'user-token': action.token,
+    },
+  }
+  try {
+    const result = yield axios.post(`${API.COMMENTS}`, action.comment, config)
+    if (result) {
+      yield put(receiveCommentAdd())
+      yield put(requestComments(action.token, action.comment.book_id))
+    }
+  } catch (error) {
+    return error.message
+  }
+  return 0
+}
+
+export function* receiveCommentsSaga(action) {
+  const config = {
+    headers: {
+      'user-token': action.token,
+    },
+  }
+  try {
+    const result = yield axios.get(`${API.COMMENTS}?where=book_id%3D${action.id}&sortBy=post_date%20desc`, config)
+    const comments = result.data.map(item => ({
+      id: item.objectId,
+      ownerId: item.ownerId,
+      text: item.text,
+      username: item.username,
+      date: item.post_date,
+    }))
+    console.log(comments);
+    yield put(receiveComments(comments))
+  } catch (error) {
+    return error.message
+  }
+  return 0
+}
 
 export function* receiveBookShelfSaga(action) {
   const config = {
@@ -37,8 +80,12 @@ export function* receiveBookSaga(action) {
     },
   }
   try {
-    console.log(123);
     const result = yield axios.get(`${API.BOOK}/${action.id}`, config)
+    let userData = null
+    if (result.data.user_id) {
+      const resultData = yield axios.get(`${API.USERS}/${result.data.user_id}?props=name`)
+      userData = resultData.data
+    }
     const book = {
       id: result.data.objectId,
       isbn: result.data.isbn,

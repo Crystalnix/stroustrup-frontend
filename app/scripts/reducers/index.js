@@ -3,6 +3,7 @@ import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 
 import books from './Books'
+import comments from './Comments'
 import register from './User/register'
 import login from './User/login'
 import user from './User/index'
@@ -12,6 +13,7 @@ import description from './description'
 export const reducers = combineReducers({
   routing: routerReducer,
   books,
+  comments,
   register,
   login,
   user,

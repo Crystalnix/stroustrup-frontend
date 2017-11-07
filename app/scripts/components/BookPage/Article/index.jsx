@@ -4,6 +4,7 @@ import { css } from 'aphrodite'
 import Description from './Description/index'
 import styles from './style'
 import { Default, Mobile } from '../../Responsive'
+import Comments from './Comments'
 
 class Aricle extends PureComponent {
   componentWillMount() {
@@ -15,11 +16,13 @@ class Aricle extends PureComponent {
         <Default>
           <Paper className={css(styles.paper)}>
             <Description text={this.props.book.description} opened={false} />
+            <Comments />
           </Paper>
         </Default>
         <Mobile>
           <Paper className={css(styles.paper, styles.paperMobile)}>
             <Description text={this.props.book.description} opened={false} />
+            <Comments />
           </Paper>
         </Mobile>
       </div>

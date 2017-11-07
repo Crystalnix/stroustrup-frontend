@@ -14,6 +14,7 @@ const initialState: GetReducer = {
   date: '',
   count: '',
   description: '',
+  user: null,
   isFetching: false,
 }
 
