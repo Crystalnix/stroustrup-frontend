@@ -1,6 +1,8 @@
 import {
   REQUEST_BOOK,
   RECEIVE_BOOK,
+  REQUEST_BOOK_SET_OWNER,
+  RECEIVE_BOOK_SET_OWNER,
 } from '../../../constants/ActionTypes'
 
 const initialState: GetReducer = {
@@ -14,8 +16,9 @@ const initialState: GetReducer = {
   date: '',
   count: '',
   description: '',
-  user: null,
+  historyId: null,
   isFetching: false,
+  isFetchingHistory: false,
 }
 
 const getReducer = (state = initialState, action) => {
@@ -26,12 +29,23 @@ const getReducer = (state = initialState, action) => {
       ...state,
       isFetching: true,
     }
-  case RECEIVE_BOOK:
+    case RECEIVE_BOOK:
     return {
+      ...state,
       ...action.book,
       isFetching: false,
     }
-
+  case REQUEST_BOOK_SET_OWNER:
+    return {
+      ...state,
+      isFetchingHistory: true,
+    }
+  case RECEIVE_BOOK_SET_OWNER:
+    return {
+      ...state,
+      ...action.receiveData,
+      isFetchingHistory: false,
+    }
   default:
     return state
   }

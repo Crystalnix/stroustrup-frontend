@@ -28,6 +28,7 @@ const userReducer = (state: UserType = initialState, action: any) => {
   switch (action.type) {
   case SET_USER:
     return {
+      id: action.id,
       name: action.name,
       email: action.email,
       token: action.token,

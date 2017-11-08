@@ -1,6 +1,7 @@
 // @flow
 export const REQUEST_BOOK: string = 'REQUEST_BOOK'
 export const RECEIVE_BOOK: string = 'RECEIVE_BOOK'
+
 export const REQUEST_BOOK_ADD: string = 'REQUEST_ADD_BOOK'
 export const RECEIVE_BOOK_ADD: string = 'RECEIVE_ADD_BOOK'
 export const REQUEST_BOOK_SHELF: string = 'REQUEST_BOOKSHELF'
@@ -21,7 +22,16 @@ export const RECEIVE_COMMENTS: string = 'RECEIVE_COMMENTS'
 export const REQUEST_COMMENT_ADD: string = 'REQUEST_COMMENT_ADD'
 export const RECEIVE_COMMENT_ADD: string = 'RECEIVE_COMMENT_ADD'
 export const COMMENTS_REFRESH: string = 'COMMENTS_REFRESH'
-export const REQUEST_BOOK_TAKE: string = 'REQUEST_BOOK_TAKE'
-export const RECEIVE_BOOK_TAKE: string = 'RECEIVE_BOOK_TAKE'
+
+export const REQUEST_BOOK_SET_OWNER: string = 'REQUEST_BOOK_SET_OWNER'
+export const RECEIVE_BOOK_SET_OWNER: string = 'RECEIVE_BOOK_SET_OWNER'
+
+export const REQUEST_BOOK_TAKE_GET: string = 'REQUEST_BOOK_TAKE_GET'
+export const RECEIVE_BOOK_TAKE_GET: string = 'RECEIVE_BOOK_TAKE_GET'
+export const REQUEST_BOOK_TAKE_POST: string = 'REQUEST_BOOK_TAKE_POST'
+export const RECEIVE_BOOK_TAKE_POST: string = 'RECEIVE_BOOK_TAKE_POST'
+export const REQUEST_BOOK_TAKE_PUT: string = 'REQUEST_BOOK_TAKE_PUT'
+export const RECEIVE_BOOK_TAKE_PUT: string = 'RECEIVE_BOOK_TAKE_PUT'
+
 export const REQUEST_BOOK_PUT: string = 'REQUEST_BOOK_PUT'
 export const RECEIVE_BOOK_PUT: string = 'RECEIVE_BOOK_PUT'

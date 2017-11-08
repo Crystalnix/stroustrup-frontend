@@ -38,19 +38,19 @@ class BookPage extends React.Component {
       <div>
         <Desktop>
           <div className={css(styles.containerDesktop)}>
-            <Header book={this.props.book} />
+            <Header />
             <Article book={this.props.book} />
           </div>
         </Desktop>
         <Tablet>
           <div className={css(styles.containerTablet)}>
-            <Header book={this.props.book} />
+            <Header />
             <Article book={this.props.book} />
           </div>
         </Tablet>
         <Mobile>
           <div className={css(styles.containerMobile)}>
-            <Header book={this.props.book} />
+            <Header />
             <Article book={this.props.book} />
           </div>
         </Mobile>

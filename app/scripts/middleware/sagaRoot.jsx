@@ -12,5 +12,7 @@ export default function* rootSaga() {
     takeEvery(types.REQUEST_BOOK_ISBN, sagas.receiveBookIsbnSaga),
     takeEvery(types.REQUEST_COMMENTS, sagas.receiveCommentsSaga),
     takeEvery(types.REQUEST_COMMENT_ADD, sagas.receiveCommentAddSaga),
+    takeEvery(types.REQUEST_BOOK_TAKE, sagas.receiveBookTakeSaga),
+    takeEvery(types.REQUEST_BOOK_PUT, sagas.receiveBookPutSaga),
   ])
 }

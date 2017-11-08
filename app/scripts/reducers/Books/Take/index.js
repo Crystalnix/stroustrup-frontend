@@ -1,30 +1,54 @@
-// @flow
 import {
-  REQUEST_BOOK_ADD,
-  RECEIVE_BOOK_ADD,
+  REQUEST_BOOK_TAKE_GET,
+  RECEIVE_BOOK_TAKE_GET,
+  REQUEST_BOOK_TAKE_POST,
+  RECEIVE_BOOK_TAKE_POST,
+  REQUEST_BOOK_TAKE_PUT,
+  RECEIVE_BOOK_TAKE_PUT,
 } from '../../../constants/ActionTypes'
-import type { Fetch } from '../../types'
 
 const initialState: any = {
-  id: '',
-  isFetching: false,
+  id: null,
+  userId: null,
+  bookid: null,
+  takeDate: null,
+  isFetchingGet: false,
+  isFetchingPost: false,
+  isFetchingPut: false,
 }
 
-const addReducer = (state: any = initialState, action: any): Fetch => {
+const takeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case REQUEST_BOOK_ADD:
+    case REQUEST_BOOK_TAKE_POST:
       return {
-        id: '',
-        isFetching: true,
+        ...state,
+        isFetchingPost: true,
       }
-    case RECEIVE_BOOK_ADD:
+    case RECEIVE_BOOK_TAKE_POST:
       return {
-        id: action.id,
-        isFetching: false,
+        ...action.receiveData,
+        isFetchingPost: false,
+      }
+    case REQUEST_BOOK_TAKE_PUT:
+      return {
+        ...state,
+        isFetchingPut: true,
+      }
+    case RECEIVE_BOOK_TAKE_PUT:
+      return initialState
+    case REQUEST_BOOK_TAKE_GET:
+      return {
+        ...state,
+        isFetchingGet: true,
+      }
+    case RECEIVE_BOOK_TAKE_GET:
+      return {
+        ...action.receiveData,
+        isFetchingGet: true,
       }
     default:
       return state
   }
 }
 
-export default addReducer
+export default takeReducer

@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { put } from 'redux-saga/effects'
 import { receiveBookShelf } from '../actions/Books/Shelf/'
-import { receiveBook } from '../actions/Books/Get'
+import { requestBook, receiveBook } from '../actions/Books/Get'
+import { receiveBookTake } from '../actions/Books/Take'
+import { receiveBookPut } from '../actions/Books/Put'
 import { receiveBookIsbn } from '../actions/Books/Isbn'
 import { receiveBookAdd } from '../actions/Books/Add'
 import { receiveRegister } from '../actions/Register'
@@ -10,6 +12,62 @@ import { requestComments, receiveComments } from '../actions/Comments/Get'
 import { receiveCommentAdd } from '../actions/Comments/Add/index'
 import API from '../constants/API'
 import { setUser } from '../actions/User'
+
+export function* receiveBookPutSaga(action) {
+  const config = {
+    headers: {
+      'user-token': action.token,
+    },
+  }
+  try {
+    const result = yield axios.put(`${API.BOOK}/${action.bookId}`, { user_id: null }, config)
+    if (result) {
+      console.log(result)
+      yield put(receiveBookPut())
+      yield put(requestBook(action.bookId, action.token))
+    }
+  } catch (error) {
+    return error.message
+  }
+  return 0
+}
+
+export function* receiveBookTakeSaga(action) {
+  const config = {
+    headers: {
+      'user-token': action.token,
+    },
+  }
+  let date = new Date()
+  date = date.getDate() +
+    '.' +
+    date.getMonth() +
+    '.' +
+    date.getFullYear() +
+    ' ' +
+    date.getHours() +
+    ':' +
+    date.getMinutes() +
+    ':' +
+    date.getSeconds()
+  const requestData = {
+    bookId: action.bookId,
+    userId: action.userId,
+    takeDate: date,
+    putDate: null,
+  }
+  try {
+    const result = yield axios.post(`${API.HISTORY}`, requestData, config)
+    if (result) {
+      console.log(result)
+      yield put(receiveBookTake())
+      yield put(requestBook(action.bookId, action.token))
+    }
+  } catch (error) {
+    return error.message
+  }
+  return 0
+}
 
 export function* receiveCommentAddSaga(action) {
   const config = {
@@ -84,7 +142,10 @@ export function* receiveBookSaga(action) {
     let userData = null
     if (result.data.user_id) {
       const resultData = yield axios.get(`${API.USERS}/${result.data.user_id}?props=name`)
-      userData = resultData.data
+      userData = {
+        id: resultData.data.objectId,
+        name: resultData.data.name,
+      }
     }
     const book = {
       id: result.data.objectId,
@@ -97,6 +158,7 @@ export function* receiveBookSaga(action) {
       date: result.data.published_date,
       count: result.data.page_count,
       description: result.data.description,
+      user: userData,
     }
     console.log(book);
     yield put(receiveBook(book))
@@ -128,6 +190,7 @@ export function* receiveLoginSaga(action) {
       password: action.password,
     })
     const user = {
+      id: result.data.objectId,
       token: result.data['user-token'],
       name: result.data.name,
       email: result.data.email,
@@ -135,7 +198,7 @@ export function* receiveLoginSaga(action) {
     }
     localStorage.setItem('user', JSON.stringify(user))
     yield put(receiveLogin())
-    yield put(setUser(user.token, user.name, user.email, user.role, true))
+    yield put(setUser(user.id, user.token, user.name, user.email, user.role, true))
   } catch (error) {
     console.log(error)
     return error.message
