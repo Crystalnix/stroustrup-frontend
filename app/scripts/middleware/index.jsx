@@ -2,6 +2,7 @@ import { all, takeEvery } from 'redux-saga/effects'
 import { historyBookTakeSaga } from './History/Book/Take'
 import { historyBookPutSaga } from './History/Book/Put'
 import { historyBookGetSaga } from './History/Book/Get'
+import { historyUserGetSaga } from './History/User'
 import * as sagas from './sagas'
 import * as types from '../constants/ActionTypes'
 
@@ -18,5 +19,6 @@ export default function* rootSaga() {
     takeEvery(types.REQUEST_HISTORY_BOOK_TAKE, historyBookTakeSaga),
     takeEvery(types.REQUEST_HISTORY_BOOK_PUT, historyBookPutSaga),
     takeEvery(types.REQUEST_HISTORY_BOOK_GET, historyBookGetSaga),
+    takeEvery(types.REQUEST_HISTORY_USER_GET, historyUserGetSaga),
   ])
 }

@@ -5,23 +5,17 @@ import { routerReducer } from 'react-router-redux'
 import books from './Books'
 import comments from './Comments'
 import history from './History'
-import register from './User/register'
-import login from './User/login'
-import user from './User/index'
-import drawer from './drawer'
-import description from './description'
+import users from './Users'
+import ui from './UI'
 //?!!?!!!?!??!?!??!!???!?!?!!!!?!?!?!?!?!?!?!?!?
 export const reducers = combineReducers({
   routing: routerReducer,
+  form: formReduser,
   books,
   comments,
   history,
-  register,
-  login,
-  user,
-  description,
-  drawer,
-  form: formReduser,
+  users,
+  ui,
 })
 
 export default reducers

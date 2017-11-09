@@ -5,15 +5,12 @@ import { Router, browserHistory } from 'react-router'
 import { Provider } from 'react-redux'
 import { syncHistoryWithStore } from 'react-router-redux'
 
-import storeConfig from './store'
-import routes from './routes'
+import storeConfig from './config/store'
+import routes from './config/routes'
 import rootSaga from './middleware'
 import '../style.css'
 
-const preloadedState = window.__PRELOADED_STATE__
-delete window.__PRELOADED_STATE__
-
-const store = storeConfig(preloadedState)
+const store = storeConfig()
 const history = syncHistoryWithStore(browserHistory, store)
 store.runSaga(rootSaga)
 render(

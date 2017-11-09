@@ -8,7 +8,7 @@ module.exports = {
   watch: true,
   entry: [
     'babel-polyfill',
-    './app/scripts/client'
+    './app/scripts/index'
   ],
   output: {
     path: __dirname + "/public",

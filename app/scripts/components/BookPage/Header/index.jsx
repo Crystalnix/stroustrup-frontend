@@ -63,8 +63,9 @@ class Header extends React.PureComponent {
                 this.props.user.id === this.props.history.user.id &&
                 <button onClick={this.clickHandlePut}>Put</button>
               }
-              {!this.props.history.id &&
-                <button onClick={this.clickHandleTake}>Take</button>
+              {!this.props.history.id ?
+                <button onClick={this.clickHandleTake}>Take</button> :
+                this.props.history.putDate && <button onClick={this.clickHandleTake}>Take</button>
               }
             </div>
             {

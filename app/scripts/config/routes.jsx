@@ -7,6 +7,7 @@ import Bookshelf from './components/Bookshelf'
 import BookPage from './components/BookPage'
 import Profile from './components/Profile'
 import AddBook from './components/AddBook/index'
+import User from './components/User'
 import { userIsAuthenticated, userIsNotAuthenticated } from './auth'
 
 const routes = (
@@ -17,6 +18,7 @@ const routes = (
     <Route path="book" component={userIsAuthenticated(Bookshelf)} />
     <Route path="book/add" component={userIsAuthenticated(AddBook)} />
     <Route path="book/:id" component={userIsAuthenticated(BookPage)} />
+    <Route path="user/:id" component={userIsAuthenticated(User)} />
   </Route>
 )
 
