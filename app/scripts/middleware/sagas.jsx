@@ -1,9 +1,7 @@
 import axios from 'axios'
 import { put } from 'redux-saga/effects'
 import { receiveBookShelf } from '../actions/Books/Shelf/'
-import { requestBook, receiveBook } from '../actions/Books/Get'
-import { receiveBookTake } from '../actions/Books/Take'
-import { receiveBookPut } from '../actions/Books/Put'
+import { receiveBook } from '../actions/Books/Get'
 import { receiveBookIsbn } from '../actions/Books/Isbn'
 import { receiveBookAdd } from '../actions/Books/Add'
 import { receiveRegister } from '../actions/Register'
@@ -12,62 +10,6 @@ import { requestComments, receiveComments } from '../actions/Comments/Get'
 import { receiveCommentAdd } from '../actions/Comments/Add/index'
 import API from '../constants/API'
 import { setUser } from '../actions/User'
-
-export function* receiveBookPutSaga(action) {
-  const config = {
-    headers: {
-      'user-token': action.token,
-    },
-  }
-  try {
-    const result = yield axios.put(`${API.BOOK}/${action.bookId}`, { user_id: null }, config)
-    if (result) {
-      console.log(result)
-      yield put(receiveBookPut())
-      yield put(requestBook(action.bookId, action.token))
-    }
-  } catch (error) {
-    return error.message
-  }
-  return 0
-}
-
-export function* receiveBookTakeSaga(action) {
-  const config = {
-    headers: {
-      'user-token': action.token,
-    },
-  }
-  let date = new Date()
-  date = date.getDate() +
-    '.' +
-    date.getMonth() +
-    '.' +
-    date.getFullYear() +
-    ' ' +
-    date.getHours() +
-    ':' +
-    date.getMinutes() +
-    ':' +
-    date.getSeconds()
-  const requestData = {
-    bookId: action.bookId,
-    userId: action.userId,
-    takeDate: date,
-    putDate: null,
-  }
-  try {
-    const result = yield axios.post(`${API.HISTORY}`, requestData, config)
-    if (result) {
-      console.log(result)
-      yield put(receiveBookTake())
-      yield put(requestBook(action.bookId, action.token))
-    }
-  } catch (error) {
-    return error.message
-  }
-  return 0
-}
 
 export function* receiveCommentAddSaga(action) {
   const config = {

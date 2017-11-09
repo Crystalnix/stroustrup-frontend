@@ -4,6 +4,7 @@ import { routerReducer } from 'react-router-redux'
 
 import books from './Books'
 import comments from './Comments'
+import history from './History'
 import register from './User/register'
 import login from './User/login'
 import user from './User/index'
@@ -14,6 +15,7 @@ export const reducers = combineReducers({
   routing: routerReducer,
   books,
   comments,
+  history,
   register,
   login,
   user,

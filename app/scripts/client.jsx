@@ -7,7 +7,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 
 import storeConfig from './store'
 import routes from './routes'
-import rootSaga from './middleware/sagaRoot'
+import rootSaga from './middleware'
 import '../style.css'
 
 const preloadedState = window.__PRELOADED_STATE__

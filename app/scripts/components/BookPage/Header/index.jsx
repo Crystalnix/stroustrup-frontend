@@ -5,29 +5,50 @@ import { css } from 'aphrodite'
 import styles from './style'
 import typography from '../../../style'
 import { Default, Mobile } from '../../Responsive'
-import { requestBookTake } from '../../../actions/Books/Take'
-import { requestBookPut } from '../../../actions/Books/Put'
+import { requestHistoryBookGet } from '../../../actions/History/Book/Get'
+import { requestHistoryBookPut } from '../../../actions/History/Book/Put'
+import { requestHistoryBookTake } from '../../../actions/History/Book/Take'
 
 const mapStateToProps = state => ({
   book: state.books.get,
   user: state.user,
+  history: state.history.book.get,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  requestBookTake,
-  requestBookPut,
+  requestHistoryBookGet,
+  requestHistoryBookTake,
+  requestHistoryBookPut,
 }, dispatch)
 
 @connect(mapStateToProps, mapDispatchToProps)
 class Header extends React.PureComponent {
   componentWillMount() {
-    console.log(this.props);
+    if (this.props.book.id) {
+      const requestData = {
+        bookId: this.props.book.id,
+        token: this.props.user.token,
+      }
+      this.props.requestHistoryBookGet(requestData)
+    }
   }
   clickHandleTake = () => {
-    this.props.requestBookTake(this.props.book.id, this.props.user.id, this.props.user.token)
+    const requestData = {
+      bookId: this.props.book.id,
+      user: {
+        id: this.props.user.id,
+        name: this.props.user.name,
+      },
+      token: this.props.user.token,
+    }
+    this.props.requestHistoryBookTake(requestData)
   }
   clickHandlePut = () => {
-    this.props.requestBookPut(this.props.book.id, this.props.user.token)
+    const requestData = {
+      id: this.props.history.id,
+      token: this.props.user.token,
+    }
+    this.props.requestHistoryBookPut(requestData)
   }
   render() {
     return (
@@ -36,16 +57,36 @@ class Header extends React.PureComponent {
           <div className={css(styles.header)}>
             <div>
               <img className={css(styles.image)} src={this.props.book.image} alt="Book pic" />
-              {this.props.book.user && this.props.book.user.id !== this.props.user.id &&
-                <button>{this.props.book.user.name}</button>
-              }
-              {this.props.book.user && this.props.book.user.id === this.props.user.id &&
+              {
+                this.props.history.id &&
+                !this.props.history.putDate &&
+                this.props.user.id === this.props.history.user.id &&
                 <button onClick={this.clickHandlePut}>Put</button>
               }
-              {!this.props.book.user &&
+              {!this.props.history.id &&
                 <button onClick={this.clickHandleTake}>Take</button>
               }
             </div>
+            {
+              !this.props.history.id &&
+              <div>
+                Noone took this book
+              </div>
+            }
+            {
+              this.props.history.putDate &&
+              <div>
+                {this.props.history.user.name} is the last one who took this book
+                from {this.props.history.takeDate} to {this.props.history.putDate}
+              </div>
+            }
+            {
+              this.props.history.id &&
+              !this.props.history.putDate &&
+              <div>
+                {this.props.history.user.name} took this book {this.props.history.takeDate}
+              </div>
+            }
             <div className={css(styles.title)}>
               <div className={css(typography.headline)}>{this.props.book.title}</div>
               <div className={css(typography.subheading)}>{this.props.book.author}</div>
