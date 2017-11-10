@@ -3,10 +3,10 @@ import {
   RECEIVE_HISTORY_BOOK_GET,
 } from '../../../../constants/ActionTypes'
 
-export function requestHistoryBookGet(requestData) {
+export function requestHistoryBookGet(data) {
   return {
     type: REQUEST_HISTORY_BOOK_GET,
-    requestData,
+    data,
   }
 }
 

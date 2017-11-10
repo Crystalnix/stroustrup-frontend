@@ -5,15 +5,15 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
-import { requestBookShelf } from '../../actions/Books/Shelf'
-import Book from './Book'
+import { requestBookShelf } from '../../../actions/Books/Shelf/index'
+import Book from './Book/index'
 import { Bookshelf as styles } from './style'
 import type Props from './types'
-import Loading from '../Loading'
+import Loading from '../../Loading'
 
 const mapStateToProps = state => ({
   shelf: state.books.shelf,
-  token: state.user.token,
+  token: state.users.get.token,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -24,9 +24,10 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 @connect(mapStateToProps, mapDispatchToProps)
 class Bookshelf extends React.Component<Props> {
   componentWillMount() {
-    if (this.props.shelf.books.length === 0 && !this.props.shelf.isFetching) {
-      this.props.requestBookShelf(this.props.token)
+    const data = {
+      token: this.props.token,
     }
+    this.props.requestBookShelf(data)
   }
 
   render() {

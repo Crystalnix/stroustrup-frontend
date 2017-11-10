@@ -2,14 +2,14 @@
 import { DELETE_USER, SET_USER } from '../../../constants/ActionTypes'
 import type {
   Action,
-  User,
   UserAction,
 } from '../../types'
+import type {User} from "../../../config/types";
 
-export function setUser(requestData: User): UserAction {
+export function setUser(data: User): UserAction {
   return {
     type: SET_USER,
-    requestData,
+    data,
   }
 }
 

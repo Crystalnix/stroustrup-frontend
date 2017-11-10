@@ -12,9 +12,8 @@ export function* historyBookPutSaga(action) {
     putDate: dateFormat(new Date(), DATE_FORMAT),
   }
   try {
-    const result = yield axios.put(`${API.HISTORY}/${action.requestData.id}`, requestData, config(action.requestData.token))
+    const result = yield axios.put(`${API.HISTORY}/${action.data.id}`, requestData, config(action.data.token))
     if (result) {
-      console.log(result)
       const receiveData = {
         putDate: result.data.putDate,
       }

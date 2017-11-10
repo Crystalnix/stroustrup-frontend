@@ -10,14 +10,14 @@ const initialState = {
 
 const shelfReducer = (state = initialState, action) => {
   switch (action.type) {
-  case REQUEST_BOOK_SHELF:
+    case REQUEST_BOOK_SHELF:
     return {
-      books: [],
+      ...state,
       isFetching: true,
     }
-  case RECEIVE_BOOK_SHELF:
+    case RECEIVE_BOOK_SHELF:
     return {
-      books: action.books,
+      ...action.data,
       isFetching: false,
     }
   default:

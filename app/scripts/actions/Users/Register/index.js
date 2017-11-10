@@ -2,21 +2,21 @@
 import {
   REQUEST_REGISTER,
   RECEIVE_REGISTER,
-} from '../constants/ActionTypes'
+} from '../../../constants/ActionTypes'
+import type { Sign } from '../../../config/types'
 import type {
   Action,
-  Sign,
   SignAction,
 } from '../../types'
 
-export function requestRegister(requestData: Sign): SignAction {
+export function requestRegister(data: Sign): SignAction {
   return {
     type: REQUEST_REGISTER,
-    requestData,
+    data,
   }
 }
 
-export function recieveRegister(): Action {
+export function receiveRegister(): Action {
   return {
     type: RECEIVE_REGISTER,
   }

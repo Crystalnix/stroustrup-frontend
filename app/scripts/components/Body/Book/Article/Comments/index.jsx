@@ -2,16 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux'
-import Form from './Form'
-import Comment from './Comment'
-import { requestComments } from '../../../../actions/Comments/Get'
-import { commentsRefresh } from '../../../../actions/Comments/Add'
-import Loading from '../../../Loading'
+import Form from './Form/index'
+import Comment from './Comment/index'
+import { requestComments } from '../../../../../actions/Comments/Get/index'
+import { commentsRefresh } from '../../../../../actions/Comments/Add/index'
+import Loading from '../../../../Loading'
 
 const mapStateToProps = state => ({
   get: state.comments.get,
   add: state.comments.add,
-  token: state.user.token,
+  token: state.users.get.token,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

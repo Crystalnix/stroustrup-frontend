@@ -1,7 +1,7 @@
 import React from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Header from './Header/'
-import Body from './Body'
+import Body from './Body/index'
 
 class App extends React.Component {
   componentWillMount() {

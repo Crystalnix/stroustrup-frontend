@@ -1,13 +1,12 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import { reduxForm, Field, formValueSelector } from 'redux-form'
+import { reduxForm, Field } from 'redux-form'
 import {
   TextField,
 } from 'redux-form-material-ui'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { RaisedButton } from 'material-ui'
 import { connect } from 'react-redux'
-import { requestLogin } from '../actions/Login'
+import { requestLogin } from '../../../actions/Users/Login'
 
 const required = value => (value == null ? 'Required' : undefined)
 const emailValid = value =>
@@ -19,12 +18,7 @@ const form = {
   form: 'login',
 }
 
-const selector = formValueSelector('login')
-
-const mapStateToProps = state => ({
-  email: selector(state, 'email'),
-  password: selector(state, 'password'),
-})
+const mapStateToProps = () => ({})
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   requestLogin,
@@ -33,14 +27,13 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 @connect(mapStateToProps, mapDispatchToProps)
 @reduxForm(form)
 class Login extends React.Component {
-  handleClick = (event) => {
-    event.preventDefault()
-    this.props.requestLogin(this.props.email, this.props.password)
+  submit = (values) => {
+    this.props.requestLogin(values)
   }
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.props.handleSubmit(this.submit)}>
         <div>
           <Field
             name="email"
@@ -63,7 +56,7 @@ class Login extends React.Component {
         </div>
         <div>
           <RaisedButton
-            onClick={this.handleClick}
+            type="submit"
             primary={true}
             label="Sign In"
           />

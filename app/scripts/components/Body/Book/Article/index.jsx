@@ -3,12 +3,11 @@ import Paper from 'material-ui/Paper'
 import { css } from 'aphrodite'
 import Description from './Description/index'
 import styles from './style'
-import { Default, Mobile } from '../../Responsive'
-import Comments from './Comments'
+import { Default, Mobile } from '../../../Responsive'
+import Comments from './Comments/index'
 
 class Aricle extends PureComponent {
   componentWillMount() {
-    console.log(this.props);
   }
   render() {
     return (

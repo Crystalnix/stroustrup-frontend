@@ -1,5 +1,5 @@
 // @flow
-import { CHANGE_DRAWER } from '../constants/ActionTypes'
+import { CHANGE_DRAWER } from '../../../constants/ActionTypes'
 
 const initialState: boolean = true
 

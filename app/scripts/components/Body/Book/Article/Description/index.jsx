@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { css } from 'aphrodite'
 import { bindActionCreators } from 'redux'
 import FlatButton from 'material-ui/FlatButton'
-import openDescription from '../../../../actions/Description'
+import openDescription from '../../../../../actions/UI/Description/index'
 import styles from './style'
 
 const mapStateToProps = state => ({
@@ -18,7 +18,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 @connect(mapStateToProps, mapDispatchToProps)
 class Description extends React.Component {
   componentWillMount() {
-    console.log(this.props);
   }
   clickHandle = () => {
     this.props.openDescription()

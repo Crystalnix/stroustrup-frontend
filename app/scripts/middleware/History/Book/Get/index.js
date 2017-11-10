@@ -6,9 +6,8 @@ import API from '../../../../constants/API'
 
 export function* historyBookGetSaga(action) {
   try {
-    const result = yield axios.get(`${API.HISTORY}?where=bookId%3D${action.requestData.bookId}&sortBy=created%20desc`, config(action.requestData.token))
+    const result = yield axios.get(`${API.HISTORY}?where=bookId%3D${action.data.bookId}&sortBy=created%20desc`, config(action.data.token))
     if (result) {
-      console.log(result)
       if (result.data[0]) {
         const resultData = yield axios.get(`${API.USERS}/${result.data[0].userId}?props=name`)
         const userData = {

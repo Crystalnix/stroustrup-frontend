@@ -1,5 +1,8 @@
 // @flow
-import { REQUEST_LOGIN, RECEIVE_LOGIN } from '../../../constants/ActionTypes'
+import {
+  REQUEST_LOGIN,
+  RECEIVE_LOGIN
+} from '../../../constants/ActionTypes'
 import type { Fetch } from '../../types'
 import type {
   Action,

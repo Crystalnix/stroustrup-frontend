@@ -3,17 +3,16 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
 import { css } from 'aphrodite'
-import { requestBook } from '../../actions/Books/Get'
-import BookType from '../../types'
-import Loading from '../Loading'
+import { requestBook } from '../../../actions/Books/Get/index'
+import Loading from '../../Loading'
 import styles from './style'
 import Header from './Header/index'
 import Article from './Article/index'
-import { Desktop, Tablet, Mobile } from '../Responsive'
+import { Desktop, Tablet, Mobile } from '../../Responsive'
 
 const mapStateToProps = state => ({
   book: state.books.get,
-  token: state.user.token,
+  token: state.users.get.token,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -24,8 +23,11 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 @connect(mapStateToProps, mapDispatchToProps)
 class BookPage extends React.Component {
   componentDidMount() {
-    console.log(this.props);
-    this.props.requestBook(this.props.params.id, this.props.token)
+    const data = {
+      id: this.props.params.id,
+      token: this.props.token,
+    }
+    this.props.requestBook(data)
   }
 
   render() {

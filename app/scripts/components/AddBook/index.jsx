@@ -15,9 +15,7 @@ const mapStateToProps = state => ({
 @connect(mapStateToProps)
 class AddBook extends React.Component {
   componentWillMount() {
-    console.log(this.props.add.id)
     if (this.props.add.id !== '') {
-      console.log(this.props.add.id)    
       this.props.router.push(`/book/${this.props.add.id}`)
     }
   }

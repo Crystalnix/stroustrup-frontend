@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import description from './Description'
 import drawer from './Drawer'
 
-export const uiReducers = combineReducers({
+export const uiReducer = combineReducers({
   description,
   drawer,
 })

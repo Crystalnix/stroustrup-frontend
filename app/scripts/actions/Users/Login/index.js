@@ -1,15 +1,18 @@
 // @flow
-import { REQUEST_LOGIN, RECEIVE_LOGIN } from '../constants/ActionTypes'
+import {
+  REQUEST_LOGIN,
+  RECEIVE_LOGIN
+} from '../../../constants/ActionTypes'
+import type { Sign } from '../../../config/types'
 import type {
   Action,
-  Sign,
   SignAction,
 } from '../../types'
 
-export function requestLogin(requestData: Sign): SignAction {
+export function requestLogin(data: Sign): SignAction {
   return {
     type: REQUEST_LOGIN,
-    requestData,
+    data,
   }
 }
 

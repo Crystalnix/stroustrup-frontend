@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { css } from 'aphrodite'
 import styles from './style'
-import typography from '../../../style'
-import { Default, Mobile } from '../../Responsive'
-import { requestHistoryBookGet } from '../../../actions/History/Book/Get'
-import { requestHistoryBookPut } from '../../../actions/History/Book/Put'
-import { requestHistoryBookTake } from '../../../actions/History/Book/Take'
+import typography from '../../../../config/style'
+import { Default, Mobile } from '../../../Responsive'
+import { requestHistoryBookGet } from '../../../../actions/History/Book/Get/index'
+import { requestHistoryBookPut } from '../../../../actions/History/Book/Put/index'
+import { requestHistoryBookTake } from '../../../../actions/History/Book/Take/index'
 
 const mapStateToProps = state => ({
   book: state.books.get,
@@ -25,15 +25,15 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 class Header extends React.PureComponent {
   componentWillMount() {
     if (this.props.book.id) {
-      const requestData = {
+      const data = {
         bookId: this.props.book.id,
         token: this.props.user.token,
       }
-      this.props.requestHistoryBookGet(requestData)
+      this.props.requestHistoryBookGet(data)
     }
   }
   clickHandleTake = () => {
-    const requestData = {
+    const data = {
       bookId: this.props.book.id,
       user: {
         id: this.props.user.id,
@@ -41,14 +41,14 @@ class Header extends React.PureComponent {
       },
       token: this.props.user.token,
     }
-    this.props.requestHistoryBookTake(requestData)
+    this.props.requestHistoryBookTake(data)
   }
   clickHandlePut = () => {
-    const requestData = {
+    const data = {
       id: this.props.history.id,
       token: this.props.user.token,
     }
-    this.props.requestHistoryBookPut(requestData)
+    this.props.requestHistoryBookPut(data)
   }
   render() {
     return (

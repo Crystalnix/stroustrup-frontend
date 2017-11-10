@@ -23,7 +23,6 @@ const initialState: User = (() => {
   if (typeof store === 'string') {
     return {
       ...(JSON.parse(store)),
-      isAuth: true,
     }
   }
   return emptyUser
@@ -32,9 +31,7 @@ const initialState: User = (() => {
 const getReducer = (state: User = initialState, action: Action | UserAction) => {
   switch (action.type) {
   case SET_USER:
-    return {
-      ...action.requestData
-    }
+    return action.data
   case DELETE_USER:
     return emptyUser
   default:

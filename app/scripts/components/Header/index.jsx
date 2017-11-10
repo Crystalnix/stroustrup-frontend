@@ -4,8 +4,8 @@ import { withRouter } from 'react-router'
 import AppBar from 'material-ui/AppBar'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { deleteUser } from '../../actions/User'
-import { closeDrawer } from '../../actions/Drawer'
+import { deleteUser } from '../../actions/Users/Get'
+import { closeDrawer } from '../../actions/UI/Drawer/index'
 import Login from './Login'
 import Logout from './Logout'
 import { Header as styles } from './style'
@@ -17,7 +17,7 @@ import {
 import type { Props } from './types'
 
 const mapStateToProps = state => ({
-  user: state.user,
+  user: state.users.get,
   drawer: state.drawer,
 })
 

@@ -1,5 +1,6 @@
+// @flow
 import React from 'react'
-import { reduxForm, Field, formValueSelector } from 'redux-form'
+import { reduxForm, Field } from 'redux-form'
 import { bindActionCreators } from 'redux'
 import {
   TextField,
@@ -7,6 +8,7 @@ import {
 import { RaisedButton } from 'material-ui'
 import { connect } from 'react-redux'
 import { requestBookAdd } from '../../../actions/Books/Add'
+import type { BookAddToken } from '../../../config/types'
 
 const required = value => (value == null ? 'Required' : undefined)
 
@@ -16,7 +18,7 @@ const form = {
 
 const mapStateToProps = state => ({
   initialValues: state.books.isbn,
-  token: state.user.token,
+  token: state.users.get.token,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -28,7 +30,11 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 class AddForm extends React.Component {
   submit = (values) => {
     if (delete values.isFetching) {
-      this.props.requestBookAdd(values, this.props.token)
+      const data: BookAddToken = {
+        book: values,
+        token: this.props.token,
+      }
+      this.props.requestBookAdd(data)
     }
   }
 

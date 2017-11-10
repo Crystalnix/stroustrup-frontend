@@ -1,5 +1,5 @@
 // @flow
-import { SET_DESCRIPTION } from '../constants/ActionTypes'
+import { SET_DESCRIPTION } from '../../../constants/ActionTypes'
 
 function openDescription(): {type: string, description: boolean} {
   return {

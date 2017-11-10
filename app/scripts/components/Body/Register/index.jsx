@@ -1,13 +1,13 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import { reduxForm, Field, formValueSelector } from 'redux-form'
+import { reduxForm, Field } from 'redux-form'
 import {
   TextField,
 } from 'redux-form-material-ui'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { RaisedButton } from 'material-ui'
 import { connect } from 'react-redux'
-import { requestRegister } from '../actions/Register'
+import { requestRegister } from '../../../actions/Users/Register'
 
 const required = value => (value == null ? 'Required' : undefined)
 const emailValid = value =>
@@ -16,15 +16,10 @@ const emailValid = value =>
     : undefined)
 
 const form = {
-  form: 'login',
+  form: 'register',
 }
 
-const selector = formValueSelector('login')
-
-const mapStateToProps = state => ({
-  email: selector(state, 'email'),
-  password: selector(state, 'password'),
-})
+const mapStateToProps = () => ({})
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   requestRegister,
@@ -34,18 +29,16 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 @reduxForm(form)
 class Login extends React.Component {
   componentDidMount() {
-    console.log(this.props)
   }
 
-  handleClick = (event) => {
-    event.preventDefault()
-    this.props.requestRegister(this.props.email, this.props.password)
+  submit = (values) => {
+    this.props.requestRegister(values)
   }
 
   render() {
     return (
       <MuiThemeProvider>
-        <form>
+        <form onSubmit={this.props.handleSubmit(this.submit)}>
           <div>
             <Field
               name="email"
@@ -67,7 +60,7 @@ class Login extends React.Component {
             />
           </div>
           <RaisedButton
-            onClick={this.handleClick}
+            type="submit"
             primary={true}
             label="Sign Up"
           />
