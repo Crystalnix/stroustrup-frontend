@@ -1,6 +1,6 @@
 export const Book = {
   card: {
-    maxWidth: '400px',
+    width: '350px',
     margin: '10px',
   },
   container: {

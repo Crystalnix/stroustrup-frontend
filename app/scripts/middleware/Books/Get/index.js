@@ -1,10 +1,14 @@
+// @flow
 import axios from 'axios'
 import { put } from 'redux-saga/effects'
 import API from '../../../constants/API'
 import config from '../../../helpers/requestHeader'
+import { receiveBook } from '../../../actions/Books/Get'
+import type { Book } from '../../../config/types'
 
 export function* bookSaga(action) {
   try {
+    console.log(action)
     const result = yield axios.get(`${API.BOOK}/${action.data.id}`, config(action.data.token))
     let userData = null
     if (result.data.user_id) {
@@ -14,7 +18,7 @@ export function* bookSaga(action) {
         name: resultData.data.name,
       }
     }
-    const book = {
+    const book: Book = {
       id: result.data.objectId,
       isbn: result.data.isbn,
       title: result.data.title,
@@ -29,7 +33,7 @@ export function* bookSaga(action) {
     }
     yield put(receiveBook(book))
   } catch (error) {
-    return error.message
+    console.error(error.message)
   }
   return 0
 }

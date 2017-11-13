@@ -3,8 +3,14 @@ import {
   REQUEST_BOOK,
   RECEIVE_BOOK,
 } from '../../../constants/ActionTypes'
-import type {Book, IDToken} from "../../../config/types";
-import type {BookAction, IDTokenAction} from "../../types";
+import type {
+  Book,
+  IDToken,
+} from '../../../config/types'
+import type {
+  BookAction,
+  IDTokenAction,
+} from '../../types'
 
 export function requestBook(data: IDToken): IDTokenAction {
   return {

@@ -9,7 +9,8 @@ import { requestBookShelf } from '../../../actions/Books/Shelf/index'
 import Book from './Book/index'
 import { Bookshelf as styles } from './style'
 import type Props from './types'
-import Loading from '../../Loading'
+import Loading from '../Loading'
+import { Desktop, Tablet, Mobile } from '../../../config/responsive'
 
 const mapStateToProps = state => ({
   shelf: state.books.shelf,
@@ -48,14 +49,36 @@ class Bookshelf extends React.Component<Props> {
                 image={book.image}
               />
             ))}
-          <FloatingActionButton
-            onClick={() => {
-              this.props.router.push('/book/add')
-            }}
-            style={styles.addButton}
-          >
-            <ContentAdd />
-          </FloatingActionButton>
+          <Desktop>
+            <FloatingActionButton
+              onClick={() => {
+                this.props.router.push('/book/add')
+              }}
+              style={styles.addButton}
+            >
+              <ContentAdd />
+            </FloatingActionButton>
+          </Desktop>
+          <Tablet>
+            <FloatingActionButton
+              onClick={() => {
+                this.props.router.push('/book/add')
+              }}
+              style={styles.addButtonTablet}
+            >
+              <ContentAdd />
+            </FloatingActionButton>
+          </Tablet>
+          <Mobile>
+            <FloatingActionButton
+              onClick={() => {
+                this.props.router.push('/book/add')
+              }}
+              style={styles.addButtonMobile}
+            >
+              <ContentAdd />
+            </FloatingActionButton>
+          </Mobile>
         </div>
       )
     }

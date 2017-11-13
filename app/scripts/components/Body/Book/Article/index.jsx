@@ -3,7 +3,7 @@ import Paper from 'material-ui/Paper'
 import { css } from 'aphrodite'
 import Description from './Description/index'
 import styles from './style'
-import { Default, Mobile } from '../../../Responsive'
+import { Default, Mobile } from '../../../../config/responsive'
 import Comments from './Comments/index'
 
 class Aricle extends PureComponent {

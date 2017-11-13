@@ -1,3 +1,5 @@
+// @flow
+
 export function* bookAddSaga(action) {
   try {
     let book = {

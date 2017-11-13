@@ -6,7 +6,7 @@ import {
 } from 'redux-form-material-ui'
 import { RaisedButton } from 'material-ui'
 import { connect } from 'react-redux'
-import { requestBookIsbn } from '../../../actions/Books/Isbn'
+import { requestBookIsbn } from '../../../../actions/Books/Isbn'
 
 const required = value => (value == null ? 'Required' : undefined)
 

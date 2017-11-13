@@ -2,16 +2,19 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { css } from 'aphrodite'
-import styles from './style'
+import RaisedButton from 'material-ui/RaisedButton'
+import styleSheet, { styles } from './style'
 import typography from '../../../../config/style'
-import { Default, Mobile } from '../../../Responsive'
+import { Default, Mobile } from '../../../../config/responsive'
 import { requestHistoryBookGet } from '../../../../actions/History/Book/Get/index'
 import { requestHistoryBookPut } from '../../../../actions/History/Book/Put/index'
 import { requestHistoryBookTake } from '../../../../actions/History/Book/Take/index'
+import Info from './Info'
+import History from './History'
 
 const mapStateToProps = state => ({
   book: state.books.get,
-  user: state.user,
+  user: state.users.get,
   history: state.history.book.get,
 })
 
@@ -54,73 +57,72 @@ class Header extends React.PureComponent {
     return (
       <div>
         <Default>
-          <div className={css(styles.header)}>
+          <div className={css(styleSheet.header)}>
             <div>
-              <img className={css(styles.image)} src={this.props.book.image} alt="Book pic" />
+              <img className={css(styleSheet.image)} src={this.props.book.image} alt="Book pic" />
+            </div>
+            <div className={css(styleSheet.title)}>
+              <Info book={this.props.book} />
+              <History history={this.props.history} />
               {
                 this.props.history.id &&
                 !this.props.history.putDate &&
                 this.props.user.id === this.props.history.user.id &&
-                <button onClick={this.clickHandlePut}>Put</button>
+                <RaisedButton
+                  style={styles.takeButton}
+                  onClick={this.clickHandlePut}
+                  primary={true}
+                  label="Put Book"
+                />
               }
               {!this.props.history.id ?
-                <button onClick={this.clickHandleTake}>Take</button> :
-                this.props.history.putDate && <button onClick={this.clickHandleTake}>Take</button>
+                <RaisedButton
+                  onClick={this.clickHandleTake}
+                  style={styles.takeButton}
+                  primary={true}
+                  label="Take Book"
+                /> :
+                this.props.history.putDate && <RaisedButton
+                  style={styles.takeButton}
+                  onClick={this.clickHandleTake}
+                  primary={true}
+                  label="Take Book"
+                />
               }
-            </div>
-            {
-              !this.props.history.id &&
-              <div>
-                Noone took this book
-              </div>
-            }
-            {
-              this.props.history.putDate &&
-              <div>
-                {this.props.history.user.name} is the last one who took this book
-                from {this.props.history.takeDate} to {this.props.history.putDate}
-              </div>
-            }
-            {
-              this.props.history.id &&
-              !this.props.history.putDate &&
-              <div>
-                {this.props.history.user.name} took this book {this.props.history.takeDate}
-              </div>
-            }
-            <div className={css(styles.title)}>
-              <div className={css(typography.headline)}>{this.props.book.title}</div>
-              <div className={css(typography.subheading)}>{this.props.book.author}</div>
-              <div className={css(typography.caption)}>{this.props.book.count}</div>
-              <div className={css(typography.caption)}>{this.props.book.publisher}</div>
-              <div className={css(typography.caption)}>{this.props.book.date}</div>
-              <div className={css(typography.caption)}>{this.props.book.isbn}</div>
             </div>
           </div>
         </Default>
-        <Mobile orientation="landscape">
-          <div className={css(styles.header)}>
-            <img className={css(styles.image)} src={this.props.book.image} alt="Book pic" />
-            <div className={css(styles.title)}>
-              <div className={css(typography.headline)}>{this.props.book.title}</div>
-              <div className={css(typography.subheading)}>{this.props.book.author}</div>
-              <div className={css(typography.caption)}>{this.props.book.count}</div>
-              <div className={css(typography.caption)}>{this.props.book.publisher}</div>
-              <div className={css(typography.caption)}>{this.props.book.date}</div>
-              <div className={css(typography.caption)}>{this.props.book.isbn}</div>
-            </div>
-          </div>
-        </Mobile>
-        <Mobile orientation="portrait">
-          <div className={css(styles.header, styles.headerMobile)}>
-            <img className={css(styles.image)} src={this.props.book.image} alt="Book pic" />
-            <div className={css(styles.title, styles.titleMobile)}>
-              <div className={css(typography.headline)}>{this.props.book.title}</div>
-              <div className={css(typography.subheading)}>{this.props.book.author}</div>
-              <div className={css(typography.caption)}>{this.props.book.count}</div>
-              <div className={css(typography.caption)}>{this.props.book.publisher}</div>
-              <div className={css(typography.caption)}>{this.props.book.date}</div>
-              <div className={css(typography.caption)}>{this.props.book.isbn}</div>
+        <Mobile>
+          <div className={css(styleSheet.header, styleSheet.headerMobile)}>
+            <img className={css(styleSheet.image)} src={this.props.book.image} alt="Book pic" />
+            <div className={css(styleSheet.title, styleSheet.titleMobile)}>
+              <Info book={this.props.book} />
+              <History history={this.props.history} />
+              {
+                this.props.history.id &&
+                !this.props.history.putDate &&
+                this.props.user.id === this.props.history.user.id &&
+                <RaisedButton
+                  style={styles.takeButton}
+                  onClick={this.clickHandlePut}
+                  primary={true}
+                  label="Put Book"
+                />
+              }
+              {!this.props.history.id ?
+                <RaisedButton
+                  onClick={this.clickHandleTake}
+                  style={styles.takeButton}
+                  primary={true}
+                  label="Take Book"
+                /> :
+                this.props.history.putDate && <RaisedButton
+                  style={styles.takeButton}
+                  onClick={this.clickHandleTake}
+                  primary={true}
+                  label="Take Book"
+                />
+              }
             </div>
           </div>
         </Mobile>

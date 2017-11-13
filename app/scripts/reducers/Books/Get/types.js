@@ -1,5 +1,5 @@
 // @flow
-import type { BookWithId } from '../../../types'
+import type { Book } from '../../../config/types'
 import type { Fetch } from '../../types'
 
-export type GetReducer = BookWithId & Fetch
+export type BookReducer = Book & Fetch

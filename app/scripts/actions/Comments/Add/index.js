@@ -4,22 +4,15 @@ import {
   COMMENTS_REFRESH,
 } from '../../../constants/ActionTypes'
 
-export function requestCommentAdd(comment, token) {
+export function requestCommentAdd(data) {
   return {
     type: REQUEST_COMMENT_ADD,
-    comment,
-    token,
+    data,
   }
 }
 
 export function receiveCommentAdd() {
   return {
     type: RECEIVE_COMMENT_ADD,
-  }
-}
-
-export function commentsRefresh() {
-  return {
-    type: COMMENTS_REFRESH,
   }
 }

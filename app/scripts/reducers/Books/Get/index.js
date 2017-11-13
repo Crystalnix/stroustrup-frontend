@@ -1,11 +1,13 @@
+// @flow
 import {
   REQUEST_BOOK,
   RECEIVE_BOOK,
   REQUEST_BOOK_SET_OWNER,
   RECEIVE_BOOK_SET_OWNER,
 } from '../../../constants/ActionTypes'
+import type { BookReducer } from './types'
 
-const initialState: GetReducer = {
+const initialState: BookReducer = {
   id: '',
   isbn: '',
   title: '',
@@ -16,9 +18,8 @@ const initialState: GetReducer = {
   date: '',
   count: '',
   description: '',
-  historyId: null,
+  user: null,
   isFetching: false,
-  isFetchingHistory: false,
 }
 
 const getReducer = (state = initialState, action) => {
@@ -32,19 +33,8 @@ const getReducer = (state = initialState, action) => {
     case RECEIVE_BOOK:
     return {
       ...state,
-      ...action.book,
+      ...action.data,
       isFetching: false,
-    }
-  case REQUEST_BOOK_SET_OWNER:
-    return {
-      ...state,
-      isFetchingHistory: true,
-    }
-  case RECEIVE_BOOK_SET_OWNER:
-    return {
-      ...state,
-      ...action.receiveData,
-      isFetchingHistory: false,
     }
   default:
     return state

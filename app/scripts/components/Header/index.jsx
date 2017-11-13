@@ -13,7 +13,7 @@ import {
   Desktop,
   Tablet,
   Mobile,
-} from '../Responsive'
+} from '../../config/responsive'
 import type { Props } from './types'
 
 const mapStateToProps = state => ({

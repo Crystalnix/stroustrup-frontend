@@ -4,11 +4,11 @@ import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
 import { css } from 'aphrodite'
 import { requestBook } from '../../../actions/Books/Get/index'
-import Loading from '../../Loading'
+import Loading from '../Loading'
 import styles from './style'
 import Header from './Header/index'
 import Article from './Article/index'
-import { Desktop, Tablet, Mobile } from '../../Responsive'
+import { Desktop, Tablet, Mobile } from '../../../config/responsive'
 
 const mapStateToProps = state => ({
   book: state.books.get,

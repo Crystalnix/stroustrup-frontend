@@ -3,7 +3,7 @@ import {
   RECEIVE_COMMENTS,
 } from '../../../constants/ActionTypes'
 
-const initialState: GetReducer = {
+const initialState = {
   comments: [],
   isFetching: false,
 }
@@ -17,7 +17,7 @@ const getReducer = (state = initialState, action) => {
       }
     case RECEIVE_COMMENTS:
       return {
-        comments: action.comments,
+        comments: action.data.comments,
         isFetching: false,
       }
     default:

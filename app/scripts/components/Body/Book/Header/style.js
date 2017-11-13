@@ -1,12 +1,11 @@
 import { StyleSheet } from 'aphrodite'
 
-const bookHeaderStyles = StyleSheet.create({
+export const styles = {
   header: {
     backgroundColor: 'transparent',
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
   },
   headerMobile: {
     flexDirection: 'column',
@@ -22,7 +21,21 @@ const bookHeaderStyles = StyleSheet.create({
   },
   titleMobile: {
     marginTop: '30px',
+    marginLeft: '0',
+    justifyContent: 'center',
   },
-})
+  info: {
+    margin: '10px 0',
+    padding: '10px',
+    backgroundColor: '#B3E5FC',
+    border: '1px solid #4FC3F7',
+    borderRadius: '5px',
+  },
+  takeButton: {
+    width: '130px',
+  }
+}
 
-export default bookHeaderStyles
+const styleSheet = StyleSheet.create(styles)
+
+export default styleSheet

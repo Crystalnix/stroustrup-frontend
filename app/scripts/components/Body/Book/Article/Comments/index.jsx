@@ -5,8 +5,7 @@ import { bindActionCreators } from 'redux'
 import Form from './Form/index'
 import Comment from './Comment/index'
 import { requestComments } from '../../../../../actions/Comments/Get/index'
-import { commentsRefresh } from '../../../../../actions/Comments/Add/index'
-import Loading from '../../../../Loading'
+import Loading from '../../../Loading'
 
 const mapStateToProps = state => ({
   get: state.comments.get,
@@ -16,14 +15,17 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   requestComments,
-  commentsRefresh,
 }, dispatch)
 
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 class Comments extends Component {
   componentWillMount() {
-    this.props.requestComments(this.props.token, this.props.params.id)
+    const data = {
+      token: this.props.token,
+      id: this.props.params.id,
+    }
+    this.props.requestComments(data)
   }
 
   render() {

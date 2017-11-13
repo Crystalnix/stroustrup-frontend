@@ -7,7 +7,7 @@ import {
 } from 'redux-form-material-ui'
 import { RaisedButton } from 'material-ui'
 import { connect } from 'react-redux'
-import { requestBookAdd } from '../../../actions/Books/Add'
+import { requestBookAdd } from '../../../../actions/Books/Add'
 import type { BookAddToken } from '../../../config/types'
 
 const required = value => (value == null ? 'Required' : undefined)

@@ -49,6 +49,13 @@ export type ID = {
   id: string,
 }
 
-export type Book = BookAdd & ID
+export type UserShort = {
+  id: string,
+  name: string,
+}
+
+export type Book = BookAdd & ID & {
+  user: ?UserShort,
+}
 
 export type IDToken = ID & Token

@@ -8,6 +8,8 @@ import {
 import { RaisedButton } from 'material-ui'
 import { connect } from 'react-redux'
 import { requestCommentAdd } from '../../../../../../actions/Comments/Add/index'
+import dateFormat from 'dateformat'
+import { DATE_FORMAT } from '../../../../../../constants/index'
 
 const required = value => (value == null ? 'Required' : undefined)
 
@@ -16,7 +18,7 @@ const form = {
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
+  user: state.users.get,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -28,24 +30,15 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 @reduxForm(form)
 class Form extends React.Component {
   submit = (values) => {
-    let date = new Date()
-    date = date.getDate() +
-      '.' +
-      date.getMonth() +
-      '.' +
-      date.getFullYear() +
-      ' ' +
-      date.getHours() +
-      ':' +
-      date.getMinutes() +
-      ':' +
-      date.getSeconds()
     this.props.requestCommentAdd({
-      username: this.props.user.name,
-      text: values.comment,
-      post_date: date,
-      book_id: this.props.params.id,
-    }, this.props.user.token)
+      comment: {
+        username: this.props.user.name,
+        text: values.comment,
+        postDate: dateFormat(new Date(), DATE_FORMAT),
+        bookId: this.props.params.id,
+      },
+      token: this.props.user.token,
+    })
   }
 
   render() {
@@ -54,6 +47,7 @@ class Form extends React.Component {
         <div>
           <Field
             name="comment"
+            style={{ width: '100%' }}
             component={TextField}
             hintText="Comment"
             floatingLabelText="Comment"

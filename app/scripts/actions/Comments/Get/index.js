@@ -3,17 +3,16 @@ import {
   RECEIVE_COMMENTS,
 } from '../../../constants/ActionTypes'
 
-export function requestComments(token, id) {
+export function requestComments(data) {
   return {
     type: REQUEST_COMMENTS,
-    token,
-    id,
+    data,
   }
 }
 
-export function receiveComments(comments) {
+export function receiveComments(data) {
   return {
     type: RECEIVE_COMMENTS,
-    comments,
+    data,
   }
 }
