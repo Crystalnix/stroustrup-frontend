@@ -16,6 +16,11 @@ const form = {
   form: 'addForm',
 }
 
+const style = {
+  textAlign: 'left',
+  width: '100%',
+}
+
 const mapStateToProps = state => ({
   initialValues: state.books.isbn,
   token: state.users.get.token,
@@ -40,7 +45,12 @@ class AddForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit(this.submit)}>
+      <form
+        onSubmit={this.props.handleSubmit(this.submit)}
+        style={{
+          padding: '30px',
+        }}
+      >
         <div>
           <Field
             name="title"
@@ -48,6 +58,10 @@ class AddForm extends React.Component {
             hintText="Title"
             floatingLabelText="Title"
             validate={[required]}
+            multiLine={true}
+            rows={1}
+            rowsMax={4}
+            style={style}
           />
         </div>
         <div>
@@ -56,7 +70,11 @@ class AddForm extends React.Component {
             component={TextField}
             hintText="Subtitle"
             floatingLabelText="Subtitle"
+            multiLine={true}
+            rows={1}
+            rowsMax={4}
             validate={[required]}
+            style={style}
           />
         </div>
         <div>
@@ -66,6 +84,7 @@ class AddForm extends React.Component {
             hintText="Author"
             floatingLabelText="Author"
             validate={[required]}
+            style={style}
           />
         </div>
         <div>
@@ -75,6 +94,7 @@ class AddForm extends React.Component {
             hintText="Publisher"
             floatingLabelText="Publisher"
             validate={[required]}
+            style={style}
           />
         </div>
         <div>
@@ -84,6 +104,7 @@ class AddForm extends React.Component {
             hintText="Date"
             floatingLabelText="Date"
             validate={[required]}
+            style={style}
           />
         </div>
         <div>
@@ -93,6 +114,7 @@ class AddForm extends React.Component {
             hintText="Count"
             floatingLabelText="Count"
             validate={[required]}
+            style={style}
           />
         </div>
         <div>
@@ -101,7 +123,10 @@ class AddForm extends React.Component {
             component={TextField}
             hintText="Description"
             floatingLabelText="Description"
+            multiLine={true}
+            rows={2}
             validate={[required]}
+            style={style}
           />
         </div>
         <div>

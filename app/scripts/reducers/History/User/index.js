@@ -18,7 +18,7 @@ const userReducer = (state = initialState, action) => {
     case RECEIVE_HISTORY_USER_GET:
       return {
         ...state,
-        ...action.receiveData,
+        ...action.data,
         isFetching: false,
       }
     default:

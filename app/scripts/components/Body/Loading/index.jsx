@@ -1,13 +1,14 @@
 import React from 'react'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import { CircularProgress } from 'material-ui'
+import LinearProgress from 'material-ui/LinearProgress'
 
-class Loading extends React.Component {
+class Loading extends React.PureComponent {
   render() {
     return (
-      <MuiThemeProvider>
-        <CircularProgress size={100} thickness={5} />
-      </MuiThemeProvider>
+
+      <LinearProgress
+        mode="indeterminate"
+        style={{ backgroundColor: '#ffffff' }}
+      />
     )
   }
 }

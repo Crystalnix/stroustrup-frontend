@@ -4,21 +4,21 @@ import {
   REMOVE_BOOK_ISBN,
 } from '../../../constants/ActionTypes'
 
-export function requestBookIsbn(isbn) {
+export function requestBookIsbn(data) {
   return {
     type: REQUEST_BOOK_ISBN,
-    isbn,
+    data,
   }
 }
 
-export function receiveBookIsbn(book) {
+export function receiveBookIsbn(data) {
   return {
     type: RECEIVE_BOOK_ISBN,
-    book,
+    data,
   }
 }
 
-export function removeBookIsbn() {
+export function removeBookIsbn(): Action {
   return {
     type: REMOVE_BOOK_ISBN,
   }

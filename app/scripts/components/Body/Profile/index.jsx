@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import History from './History'
 
 const mapStateToProps = state => ({
-  user: state.user,
+  user: state.users.get,
 })
 
 @connect(mapStateToProps)
@@ -10,8 +11,7 @@ class Profile extends React.Component {
   render() {
     return (
       <div>
-        Name: {this.props.user.name}
-        Email: {this.props.user.email}
+        <History />
       </div>
     )
   }

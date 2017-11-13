@@ -8,7 +8,7 @@ import styles from './style'
 class Description extends React.PureComponent {
   render() {
     return (
-      <div>
+      <div style={{ padding: '50px' }}>
         <div className={css(styles.description)}>
           <div className="body1">
             {this.props.text}

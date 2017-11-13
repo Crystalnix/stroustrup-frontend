@@ -38,7 +38,10 @@ class Login extends React.Component {
   render() {
     return (
       <MuiThemeProvider>
-        <form onSubmit={this.props.handleSubmit(this.submit)}>
+        <form
+          onSubmit={this.props.handleSubmit(this.submit)}
+          style={{ textAlign: 'center' }}
+        >
           <div>
             <Field
               name="email"

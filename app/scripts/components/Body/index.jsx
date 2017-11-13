@@ -29,11 +29,7 @@ class Body extends React.Component {
     return (
       <div
         style={
-          {
-            ...(this.props.drawer ?
-              styles.containerDrawerOpen :
-              styles.containerMarginTop),
-          }
+          styles.containerMarginTop
         }
       >
         {this.props.children}

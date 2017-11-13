@@ -11,10 +11,11 @@ import { Bookshelf as styles } from './style'
 import type Props from './types'
 import Loading from '../Loading'
 import { Desktop, Tablet, Mobile } from '../../../config/responsive'
+import ButtonAdd from './ButtonAdd'
 
 const mapStateToProps = state => ({
   shelf: state.books.shelf,
-  token: state.users.get.token,
+  user: state.users.get,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -26,7 +27,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 class Bookshelf extends React.Component<Props> {
   componentWillMount() {
     const data = {
-      token: this.props.token,
+      token: this.props.user.token,
     }
     this.props.requestBookShelf(data)
   }
@@ -49,36 +50,7 @@ class Bookshelf extends React.Component<Props> {
                 image={book.image}
               />
             ))}
-          <Desktop>
-            <FloatingActionButton
-              onClick={() => {
-                this.props.router.push('/book/add')
-              }}
-              style={styles.addButton}
-            >
-              <ContentAdd />
-            </FloatingActionButton>
-          </Desktop>
-          <Tablet>
-            <FloatingActionButton
-              onClick={() => {
-                this.props.router.push('/book/add')
-              }}
-              style={styles.addButtonTablet}
-            >
-              <ContentAdd />
-            </FloatingActionButton>
-          </Tablet>
-          <Mobile>
-            <FloatingActionButton
-              onClick={() => {
-                this.props.router.push('/book/add')
-              }}
-              style={styles.addButtonMobile}
-            >
-              <ContentAdd />
-            </FloatingActionButton>
-          </Mobile>
+          <ButtonAdd />
         </div>
       )
     }

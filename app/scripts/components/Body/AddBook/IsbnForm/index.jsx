@@ -1,6 +1,6 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import { reduxForm, Field, formValueSelector } from 'redux-form'
+import { reduxForm, Field } from 'redux-form'
 import {
   TextField,
 } from 'redux-form-material-ui'
@@ -14,11 +14,7 @@ const form = {
   form: 'isbnForm',
 }
 
-const selector = formValueSelector('isbnForm')
-
-const mapStateToProps = state => ({
-  isbn: selector(state, 'isbn'),
-})
+const mapStateToProps = () => ({})
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   requestBookIsbn,
@@ -27,14 +23,17 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 @connect(mapStateToProps, mapDispatchToProps)
 @reduxForm(form)
 class IsbnForm extends React.Component {
-  handleClick = (event) => {
-    event.preventDefault()
-    this.props.requestBookIsbn(this.props.isbn)
+  submit = (values) => {
+    console.log(values)
+    this.props.requestBookIsbn(values)
   }
 
   render() {
     return (
-      <form>
+      <form
+        onSubmit={this.props.handleSubmit(this.submit)}
+        style={{ textAlign: 'center' }}
+      >
         <div>
           <Field
             name="isbn"
@@ -46,7 +45,7 @@ class IsbnForm extends React.Component {
         </div>
         <div>
           <RaisedButton
-            onClick={this.handleClick}
+            type="submit"
             primary={true}
             label="Add Book"
           />

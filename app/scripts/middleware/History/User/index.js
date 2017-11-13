@@ -25,6 +25,7 @@ export function* historyUserGetSaga(action) {
         const receiveData = {
           books,
         }
+        console.log(receiveData)
         yield put(receiveHistoryUserGet(receiveData))
       }
     }

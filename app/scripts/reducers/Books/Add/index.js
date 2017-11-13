@@ -2,6 +2,7 @@
 import {
   REQUEST_BOOK_ADD,
   RECEIVE_BOOK_ADD,
+  REMOVE_BOOK_ADD,
 } from '../../../constants/ActionTypes'
 import type { Fetch } from '../../types'
 
@@ -19,9 +20,11 @@ const addReducer = (state: any = initialState, action: any): Fetch => {
     }
   case RECEIVE_BOOK_ADD:
     return {
-      id: action.id,
+      id: action.data.id,
       isFetching: false,
     }
+  case REMOVE_BOOK_ADD:
+    return initialState
   default:
     return state
   }

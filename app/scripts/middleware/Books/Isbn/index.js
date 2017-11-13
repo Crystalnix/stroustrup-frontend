@@ -1,11 +1,16 @@
+import axios from 'axios'
+import { put } from 'redux-saga/effects'
+import API from '../../../constants/API'
+import { receiveBookIsbn } from '../../../actions/Books/Isbn'
+
 export function* bookIsbnSaga(action) {
-  const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${action.isbn}`
+  const url = `${API.ISBN}${action.data.isbn}`
   const result = (yield axios({
     method: 'GET',
     url,
   })).data.items[0].volumeInfo
-  yield put(receiveBookIsbn({
-    isbn: action.isbn,
+  const receiveData = {
+    isbn: action.data.isbn,
     title: result.title,
     subtitle: result.subtitle,
     author: result.authors[0],
@@ -14,6 +19,7 @@ export function* bookIsbnSaga(action) {
     date: result.publishedDate,
     count: result.pageCount,
     description: result.description,
-  }))
+  }
+  yield put(receiveBookIsbn(receiveData))
   return 0
 }

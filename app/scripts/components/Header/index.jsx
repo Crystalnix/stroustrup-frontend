@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import { withRouter } from 'react-router'
+import { withRouter, Link } from 'react-router'
 import AppBar from 'material-ui/AppBar'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -15,38 +15,34 @@ import {
   Mobile,
 } from '../../config/responsive'
 import type { Props } from './types'
+import FlatButton from 'material-ui/FlatButton'
 
 const mapStateToProps = state => ({
   user: state.users.get,
-  drawer: state.drawer,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   deleteUser,
-  closeDrawer,
 }, dispatch)
 
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 class Header extends React.Component<Props> {
   componentWillMount() {
-    if (!this.props.user.isAuth) this.props.closeDrawer()
+    console.log(this.props)
   }
   render() {
     const appBarPropsDesktop = {
-      title: 'Straustrup Library',
+      title: <Link to="/book" style={{ color: '#fff', textDecoration: 'none' }}>Straustrup Library</Link>,
       iconElementRight: this.props.user.isAuth ?
         <Logout deleteUser={this.props.deleteUser} /> :
         <Login />,
       style: styles.appbar,
-      titleStyle: { cursor: 'pointer' },
       showMenuIconButton: false,
-      onTitleTouchTap: () => { this.props.router.push('/book') },
       elevation: 16,
     }
     const appBarPropsTablet = {
       ...appBarPropsDesktop,
-      showMenuIconButton: true,
       iconElementRight: <div>tablet</div>,
     }
     const appBarPropsMobile = {

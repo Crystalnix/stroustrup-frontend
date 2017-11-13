@@ -28,7 +28,7 @@ const isbnReducer = (state = initialState, action) => {
     }
   case RECEIVE_BOOK_ISBN:
     return {
-      ...action.book,
+      ...action.data,
       isFetching: false,
     }
   case REMOVE_BOOK_ISBN:
