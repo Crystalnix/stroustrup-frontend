@@ -1,6 +1,7 @@
 // @flow
 export const REQUEST_BOOK: string = 'REQUEST_BOOK'
 export const RECEIVE_BOOK: string = 'RECEIVE_BOOK'
+export const REMOVE_BOOK: string = 'REMOVE_BOOK'
 
 export const REQUEST_BOOK_ADD: string = 'REQUEST_ADD_BOOK'
 export const RECEIVE_BOOK_ADD: string = 'RECEIVE_ADD_BOOK'

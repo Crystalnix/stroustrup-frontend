@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
 import { css } from 'aphrodite'
-import { requestBook } from '../../../actions/Books/Get/index'
+import { requestBook, removeBook } from '../../../actions/Books/Get/index'
 import Loading from '../Loading'
 import styles from './style'
 import Header from './Header/index'
@@ -17,17 +17,22 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   requestBook,
+  removeBook,
 }, dispatch)
 
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
-class BookPage extends React.Component {
+class Book extends React.Component {
   componentDidMount() {
     const data = {
       id: this.props.params.id,
       token: this.props.token,
     }
     this.props.requestBook(data)
+  }
+
+  componentWillUnmount() {
+    this.props.removeBook()
   }
 
   render() {
@@ -62,4 +67,4 @@ class BookPage extends React.Component {
 }
 
 
-export default BookPage
+export default Book

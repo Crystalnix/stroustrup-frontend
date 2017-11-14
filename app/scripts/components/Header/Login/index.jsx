@@ -32,12 +32,16 @@ class Logout extends React.Component {
         targetOrigin={{horizontal: 'right', vertical: 'top'}}
         anchorOrigin={{horizontal: 'right', vertical: 'top'}}
       >
-        <Link style={{ textDecoration: 'none' }} to="/login">
-          <MenuItem primaryText="Sign In" />
-        </Link>
-        <Link style={{ textDecoration: 'none' }} to="/register">
-          <MenuItem primaryText="Sign Up" />
-        </Link>
+        <MenuItem>
+          <Link style={{ textDecoration: 'none', color: '#000000' }} to="/login">
+            Sign In
+          </Link>
+        </MenuItem>
+        <MenuItem>
+          <Link style={{ textDecoration: 'none', color: '#000000' }} to="/register">
+            Sign Up
+          </Link>
+        </MenuItem>
       </IconMenu>
     )
   }

@@ -32,12 +32,16 @@ class Logout extends React.Component {
         targetOrigin={{horizontal: 'right', vertical: 'top'}}
         anchorOrigin={{horizontal: 'right', vertical: 'top'}}
       >
-        <Link style={{ textDecoration: 'none' }} to={`/user/${this.props.user.id}`}>
-          <MenuItem primaryText="Profile" />
-        </Link>
-        <Link to="/" style={{ textDecoration: 'none' }} onClick={this.props.deleteUser}>
-          <MenuItem primaryText="Sign out" />
-        </Link>
+        <MenuItem>
+          <Link style={{ textDecoration: 'none', color: '#000000' }} to={`/user/${this.props.user.id}`}>
+            Profile
+          </Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/" style={{ textDecoration: 'none', color: '#000000' }} onClick={this.props.deleteUser}>
+            Sign out
+          </Link>
+        </MenuItem>
       </IconMenu>
     )
   }

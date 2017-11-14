@@ -1,5 +1,6 @@
 export const styles = {
   size: {
+    position: 'absolute',
     width: '56px',
     height: '56px',
   },

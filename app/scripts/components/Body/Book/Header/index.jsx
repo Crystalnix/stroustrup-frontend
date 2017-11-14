@@ -94,16 +94,18 @@ class Header extends React.PureComponent {
         </Default>
         <Mobile>
           <div className={css(styleSheet.header, styleSheet.headerMobile)}>
-            <img className={css(styleSheet.image)} src={this.props.book.image} alt="Book pic" />
+            <div>
+              <img className={css(styleSheet.imageMobile)} src={this.props.book.image} alt="Book pic" />
+            </div>
             <div className={css(styleSheet.title, styleSheet.titleMobile)}>
-              <Info book={this.props.book} />
-              <History history={this.props.history} />
+              <Info book={this.props.book} device="mobile" />
+              <History history={this.props.history} device="mobile" />
               {
                 this.props.history.id &&
                 !this.props.history.putDate &&
                 this.props.user.id === this.props.history.user.id &&
                 <RaisedButton
-                  style={styles.takeButton}
+                  style={styles.takeButtonMobile}
                   onClick={this.clickHandlePut}
                   primary={true}
                   label="Put Book"
@@ -112,7 +114,7 @@ class Header extends React.PureComponent {
               {!this.props.history.id ?
                 <RaisedButton
                   onClick={this.clickHandleTake}
-                  style={styles.takeButton}
+                  style={styles.takeButtonMobile}
                   primary={true}
                   label="Take Book"
                 /> :

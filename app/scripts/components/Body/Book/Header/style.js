@@ -10,8 +10,13 @@ export const styles = {
   headerMobile: {
     flexDirection: 'column',
     justifyContent: 'center',
+    textAlign: 'center',
   },
-  image: {
+  imageMobile: {
+    width: 'auto',
+    height: 'auto',
+    display: 'block',
+    margin: '0 auto',
   },
   title: {
     marginLeft: '30px',
@@ -33,7 +38,11 @@ export const styles = {
   },
   takeButton: {
     width: '130px',
-  }
+  },
+  takeButtonMobile: {
+    width: '130px',
+    margin: '0 auto',
+  },
 }
 
 const styleSheet = StyleSheet.create(styles)

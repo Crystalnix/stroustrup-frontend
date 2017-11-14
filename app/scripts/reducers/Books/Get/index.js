@@ -2,8 +2,7 @@
 import {
   REQUEST_BOOK,
   RECEIVE_BOOK,
-  REQUEST_BOOK_SET_OWNER,
-  RECEIVE_BOOK_SET_OWNER,
+  REMOVE_BOOK,
 } from '../../../constants/ActionTypes'
 import type { BookReducer } from './types'
 
@@ -30,12 +29,14 @@ const getReducer = (state = initialState, action) => {
       ...state,
       isFetching: true,
     }
-    case RECEIVE_BOOK:
+  case RECEIVE_BOOK:
     return {
       ...state,
       ...action.data,
       isFetching: false,
     }
+  case REMOVE_BOOK:
+    return initialState
   default:
     return state
   }
