@@ -36,6 +36,10 @@ class Book extends React.Component {
   }
 
   render() {
+    const requestData = {
+      id: this.props.params.id,
+      token: this.props.token,
+    }
     if (this.props.book.isFetching) {
       return (
         <Loading />
@@ -45,19 +49,19 @@ class Book extends React.Component {
       <div>
         <Desktop>
           <div className={css(styles.containerDesktop)}>
-            <Header />
+            <Header requestData={requestData} book={this.props.book} />
             <Article book={this.props.book} />
           </div>
         </Desktop>
         <Tablet>
           <div className={css(styles.containerTablet)}>
-            <Header />
+            <Header requestData={requestData} book={this.props.book} />
             <Article book={this.props.book} />
           </div>
         </Tablet>
         <Mobile>
           <div className={css(styles.containerMobile)}>
-            <Header />
+            <Header requestData={requestData} book={this.props.book} />
             <Article book={this.props.book} />
           </div>
         </Mobile>

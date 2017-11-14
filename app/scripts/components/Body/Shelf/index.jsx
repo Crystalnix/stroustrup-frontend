@@ -50,7 +50,10 @@ class Bookshelf extends React.Component<Props> {
                 image={book.image}
               />
             ))}
-          <ButtonAdd />
+          {
+            this.props.user.role === 'admin' &&
+            <ButtonAdd />
+          }
         </div>
       )
     }

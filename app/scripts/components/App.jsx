@@ -1,11 +1,13 @@
 import React from 'react'
+import { withRouter } from 'react-router'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Header from './Header/'
 import Body from './Body/index'
 
+@withRouter
 class App extends React.Component {
   componentWillMount() {
-
+    // this.props.router.push('/book')
   }
 
   render() {

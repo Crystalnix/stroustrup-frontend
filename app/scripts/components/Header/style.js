@@ -1,4 +1,4 @@
-export const Header = {
+export const styles = {
   appbar: {
     position: 'fixed',
   },

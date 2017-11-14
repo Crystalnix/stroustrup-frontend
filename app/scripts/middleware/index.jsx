@@ -12,6 +12,7 @@ import { bookAddSaga } from './Books/Add'
 import { commentsSaga } from './Comments/Get'
 import { commentAddSaga } from './Comments/Add'
 import { bookIsbnSaga } from './Books/Isbn'
+import { historyBookShelfSaga } from './History/Book/Shelf'
 
 export default function* rootSaga() {
   yield all([
@@ -27,5 +28,6 @@ export default function* rootSaga() {
     takeEvery(types.REQUEST_BOOK_ISBN, bookIsbnSaga),
     takeEvery(types.REQUEST_COMMENT_ADD, commentAddSaga),
     takeEvery(types.REQUEST_COMMENTS, commentsSaga),
+    takeEvery(types.REQUEST_HISTORY_BOOK_SHELF, historyBookShelfSaga),
   ])
 }

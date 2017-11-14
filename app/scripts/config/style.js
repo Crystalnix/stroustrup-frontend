@@ -45,6 +45,21 @@ export const typographyStyles = {
     fontSize: '1em',
     fontWeight: '500',
   },
+  link: {
+    textDecoration: 'none',
+  },
+  colorBlack: {
+    color: '#000000',
+  },
+  colorWhite: {
+    color: '#ffffff',
+  },
+  linkBlack: {
+    textDecoration: 'none',
+    color: '#000000',
+    display: 'block',
+  },
+
 }
 
 const typographyStyleSheet = StyleSheet.create(typographyStyles)

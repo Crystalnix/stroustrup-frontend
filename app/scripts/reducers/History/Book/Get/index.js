@@ -10,6 +10,7 @@ const initialState = {
   takeDate: '',
   putDate: '',
   isFetching: false,
+  loaded: false,
 }
 
 const getReducer = (state = initialState, action) => {
@@ -18,12 +19,14 @@ const getReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: true,
+        loaded: false,
       }
     case RECEIVE_HISTORY_BOOK_GET:
       return {
         ...state,
         ...action.receiveData,
         isFetching: false,
+        loaded: true,
       }
     default:
       return state
