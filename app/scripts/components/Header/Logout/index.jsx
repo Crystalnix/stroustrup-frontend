@@ -37,6 +37,11 @@ class Logout extends React.Component {
           </Link>
         </MenuItem>
         <MenuItem>
+          <Link style={typographyStyles.linkBlack} to="/history">
+            History
+          </Link>
+        </MenuItem>
+        <MenuItem>
           <Link to="/" style={typographyStyles.linkBlack} onClick={this.props.deleteUser}>
             Sign out
           </Link>
