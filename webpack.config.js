@@ -5,7 +5,7 @@ let ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   devtool: "cheap-module-eval-source-map",
-  watch: true,
+  watch: false,
   entry: [
     'babel-polyfill',
     './app/scripts/index'
