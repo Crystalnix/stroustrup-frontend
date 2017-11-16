@@ -24,7 +24,14 @@ class Book extends React.PureComponent {
                 src={this.props.image}
               />
             </CardMedia>
-            <CardTitle title={this.props.title} subtitle={`by ${this.props.author}`} />
+            <CardTitle
+              titleStyle={{
+                maxHeight: '142px',
+                overflow: 'hidden',
+              }}
+              title={this.props.title}
+              subtitle={`by ${this.props.author}`}
+            />
           </Card>
         </Default>
         <Mobile>
@@ -41,7 +48,14 @@ class Book extends React.PureComponent {
                 src={this.props.image}
               />
             </CardMedia>
-            <CardTitle title={this.props.title} subtitle={`by ${this.props.author}`} />
+            <CardTitle
+              titleStyle={{
+                maxHeight: '142px',
+                overflow: 'hidden',
+              }}
+              title={this.props.title}
+              subtitle={`by ${this.props.author}`}
+            />
           </Card>
         </Mobile>
       </Link>

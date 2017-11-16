@@ -8,6 +8,7 @@ import Book from './Book'
 
 const styles = {
   container: {
+    wordBreak: 'break-word',
     display: 'flex',
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',

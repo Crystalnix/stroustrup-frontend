@@ -3,7 +3,6 @@ import { Link } from 'react-router'
 import Card from 'material-ui/Card/Card'
 import CardTitle from 'material-ui/Card/CardTitle'
 import CardMedia from 'material-ui/Card/CardMedia'
-import CardText from 'material-ui/Card/CardText'
 import { Book as styles } from './style'
 import { Default, Mobile } from '../../../../../config/responsive'
 
@@ -26,6 +25,10 @@ class Book extends React.PureComponent {
               />
             </CardMedia>
             <CardTitle
+              titleStyle={{
+                maxHeight: '71px',
+                overflow: 'hidden',
+              }}
               title={this.props.title}
               subtitle={
                 <div>
@@ -52,6 +55,10 @@ class Book extends React.PureComponent {
               />
             </CardMedia>
             <CardTitle
+              titleStyle={{
+                maxHeight: '71px',
+                overflow: 'hidden',
+              }}
               title={this.props.title}
               subtitle={
                 <div>
