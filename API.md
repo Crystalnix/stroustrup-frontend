@@ -1,7 +1,10 @@
+  **IMPORTANT**
+  ----
+    Will all get requests you can use where and sortBy url params
 
   **Get Bookshelf**
   ----
-    Returns json data about a single book.
+    Returns json data about a bookshelf.
 
   * **URL**
 
@@ -75,7 +78,7 @@
 
 **Add Book**
 ----
-  Returns json data about a single book.
+  Add book and returns json data about it (with id).
 
 * **URL**
 
@@ -128,7 +131,7 @@
 
 **Register user**
 ----
-  Returns json data about a single book.
+  Returns only status.
 
 * **URL**
 
@@ -153,18 +156,11 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Data:** `{
-                    objectId: string,
-                    email: string,
-                    name: string,
-                    password: string,
-                  }`
-
 
 
 **Login User**
 ----
-  Returns json data about a single book.
+  Returns json data about the user (with token).
 
 * **URL**
 
@@ -199,7 +195,7 @@
 
 **Get Comments**
 ----
-  Returns json data about a single book.
+  Returns json data about comments for book.
 
 * **URL**
 
@@ -218,6 +214,9 @@
   **Headers:** `{
                   user-token: string,
                 }`
+  **Data:** `{
+               id: string,
+             }`
 
 * **Success Response:**
 
@@ -237,7 +236,7 @@
 
 **Add Comment**
 ----
-  Returns json data about a single book.
+  Add comment to book and returns it.
 
 * **URL**
 
@@ -278,7 +277,7 @@
 
 **Get History**
 ----
-  Returns json data about a single book.
+  Returns json data about history.
 
 * **URL**
 
@@ -298,12 +297,6 @@
                   user-token: string,
                 }`
 
-  **Data:** `{
-               postDate: string,
-               bookId: string,
-               text: string,
-               username: string,
-             }`
 
 * **Success Response:**
 
@@ -311,8 +304,7 @@
     **Data:** `{
                  id: string,
                  ownerId: string,
-                 postDate: string,
+                 putDate: string,
+                 takeDate: string,
                  bookId: string,
-                 text: string,
-                 username: string,
                }`

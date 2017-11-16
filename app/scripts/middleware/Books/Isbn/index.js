@@ -25,7 +25,18 @@ export function* bookIsbnSaga(action) {
     }
     yield put(receiveBookIsbn(receiveData))
   } else {
-    yield put(removeBookIsbn())
+    const receiveData = {
+      isbn: 'none',
+      title: '',
+      subtitle: '',
+      author: '',
+      image: '',
+      publisher: '',
+      date: '',
+      count: '',
+      description: '',
+    }
+    yield put(receiveBookIsbn(receiveData))
   }
   return 0
 }
