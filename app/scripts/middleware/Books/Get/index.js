@@ -8,7 +8,6 @@ import type { Book } from '../../../config/types'
 
 export function* bookSaga(action) {
   try {
-    console.log(action)
     const result = yield axios.get(`${API.BOOK}/${action.data.id}`, config(action.data.token))
     let userData = null
     if (result.data.user_id) {

@@ -19,31 +19,24 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   removeBookIsbn,
 }, dispatch)
 
-@withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 class AddBook extends React.Component {
   componentWillMount() {
-    console.log('123: ', this.props.add.id)
     if (this.props.add.id !== '') {
       this.props.router.push(`/book/${this.props.add.id}`)
     }
   }
-
   render() {
-    if (this.props.add.id) {
-      this.props.removeBookIsbn()
-      this.props.removeBookAdd()
-      this.props.router.push(`/book/${this.props.add.id}`)
-    }
-    if (this.props.isbn.isFetching || this.props.add.isFetching) {
+    if (this.props.isbn.isFetching
+      || this.props.add.isFetching) {
       return (
         <Loading />
       )
-    } else if (!this.props.isbn.isbn && !this.props.isbn.isFetching) {
+    } else if (!this.props.isbn.isbn) {
       return (
         <IsbnForm />
       )
-    } else if (this.props.isbn.isbn && !this.props.isbn.isFetching) {
+    } else if (this.props.isbn.isbn) {
       return (
         <AddForm />
       )
@@ -55,4 +48,3 @@ class AddBook extends React.Component {
 }
 
 export default AddBook
-//9781491950296

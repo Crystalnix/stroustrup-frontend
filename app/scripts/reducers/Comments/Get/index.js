@@ -1,6 +1,7 @@
 import {
   REQUEST_COMMENTS,
   RECEIVE_COMMENTS,
+  REMOVE_COMMENTS,
 } from '../../../constants/ActionTypes'
 
 const initialState = {
@@ -20,6 +21,8 @@ const getReducer = (state = initialState, action) => {
         comments: action.data.comments,
         isFetching: false,
       }
+    case REMOVE_COMMENTS:
+      return initialState
     default:
       return state
   }

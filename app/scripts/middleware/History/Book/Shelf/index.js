@@ -6,7 +6,7 @@ import API from '../../../../constants/API'
 
 export function* historyBookShelfSaga(action) {
   try {
-    const result = yield axios.get(`${API.HISTORY}?where=putDate%3Dnull&sortBy=created%20desc`, config(action.data.token))
+    const result = yield axios.get(`${API.HISTORY}?where=putDate%20is%20null&pageSize=100&sortBy=created%20desc`, config(action.data.token))
     let receiveData = []
     if (result) {
       if (result.data.length !== 0) {
@@ -32,8 +32,9 @@ export function* historyBookShelfSaga(action) {
           }
           receiveData.push(item)
         }
-        console.log(receiveData)
         yield put(receiveHistoryBookShelf({ items: receiveData }))
+      } else {
+        yield put(receiveHistoryBookShelf({ items: [] }))
       }
     }
   } catch (error) {

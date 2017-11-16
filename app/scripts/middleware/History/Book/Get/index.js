@@ -6,8 +6,7 @@ import API from '../../../../constants/API'
 
 export function* historyBookGetSaga(action) {
   try {
-    const result = yield axios.get(`${API.HISTORY}?where=bookId%3D${action.data.id}&sortBy=created%20desc`, config(action.data.token))
-    console.log(result)
+    const result = yield axios.get(`${API.HISTORY}?where=bookId%3D'${action.data.id}'&sortBy=created%20desc`, config(action.data.token))
     if (result.status === 200) {
       if (result.data[0]) {
         const resultData = yield axios.get(`${API.USERS}/${result.data[0].userId}?props=name`)
@@ -23,18 +22,19 @@ export function* historyBookGetSaga(action) {
           putDate: result.data[0].putDate,
         }
         yield put(receiveHistoryBookGet(receiveData))
+      } else {
+        const receiveData = {
+          id: '',
+          bookId: '',
+          user: null,
+          takeDate: '',
+          putDate: '',
+        }
+        yield put(receiveHistoryBookGet(receiveData))
       }
     }
   } catch (error) {
-    //backendless return 400 error if no data
-    const receiveData = {
-      id: '',
-      bookId: '',
-      user: null,
-      takeDate: '',
-      putDate: '',
-    }
-    yield put(receiveHistoryBookGet(receiveData))
+    console.error(error.message)
   }
   return 0
 }

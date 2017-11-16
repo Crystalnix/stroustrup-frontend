@@ -1,20 +1,26 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
-import { reduxForm, Field } from 'redux-form'
+import {
+  reduxForm,
+  Field,
+  reset,
+} from 'redux-form'
 import {
   TextField,
 } from 'redux-form-material-ui'
+import dateFormat from 'dateformat'
 import { RaisedButton } from 'material-ui'
 import { connect } from 'react-redux'
 import { requestCommentAdd } from '../../../../../../actions/Comments/Add/index'
-import dateFormat from 'dateformat'
 import { DATE_FORMAT } from '../../../../../../constants/index'
 
 const required = value => (value == null ? 'Required' : undefined)
 
+const FORM_NAME = 'commentForm'
+
 const form = {
-  form: 'commentForm',
+  form: FORM_NAME,
 }
 
 const mapStateToProps = state => ({
@@ -23,6 +29,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   requestCommentAdd,
+  reset,
 }, dispatch)
 
 @withRouter
@@ -39,6 +46,7 @@ class Form extends React.Component {
       },
       token: this.props.user.token,
     })
+    this.props.reset(FORM_NAME)
   }
 
   render() {

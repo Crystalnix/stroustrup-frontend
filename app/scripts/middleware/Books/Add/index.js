@@ -15,8 +15,6 @@ export function* bookAddSaga(action) {
     delete book.date
     delete book.count
     const result = yield axios.post(`${API.BOOK}`, book, config(action.data.token))
-    console.log(book)
-    console.log(result)
     yield put(receiveBookAdd({ id: result.data.objectId }))
   } catch (error) {
     console.error(error.message)

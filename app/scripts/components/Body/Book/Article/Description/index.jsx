@@ -1,8 +1,5 @@
 import React from 'react'
 import { css } from 'aphrodite'
-import { bindActionCreators } from 'redux'
-import FlatButton from 'material-ui/FlatButton'
-import openDescription from '../../../../../actions/UI/Description/index'
 import styles from './style'
 import { Desktop, Tablet, Mobile } from '../../../../../config/responsive'
 

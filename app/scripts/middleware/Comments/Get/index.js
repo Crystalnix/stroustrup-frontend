@@ -28,8 +28,7 @@ type Comment = {
 
 export function* commentsSaga(action) {
   try {
-    const result = yield axios.get(`${API.COMMENTS}?where=bookId%3D${action.data.id}&sortBy=created%20desc`, config(action.data.token))
-    console.log(result)
+    const result = yield axios.get(`${API.COMMENTS}?where=bookId%3D'${action.data.id}'&sortBy=created%20desc`, config(action.data.token))
     const comments = result.data.map((item: CommentResponse): Comment => ({
       id: item.objectId,
       ownerId: item.ownerId,
@@ -37,7 +36,6 @@ export function* commentsSaga(action) {
       username: item.username,
       date: item.postDate,
     }))
-    console.log(comments)
     yield put(receiveComments({ comments }))
   } catch (error) {
     return error.message

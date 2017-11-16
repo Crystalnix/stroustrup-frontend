@@ -4,8 +4,7 @@ import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux'
 import Form from './Form/index'
 import Comment from './Comment/index'
-import { requestComments } from '../../../../../actions/Comments/Get/index'
-import Loading from '../../../Loading'
+import { requestComments, removeComments } from '../../../../../actions/Comments/Get'
 
 const mapStateToProps = state => ({
   get: state.comments.get,
@@ -15,6 +14,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   requestComments,
+  removeComments,
 }, dispatch)
 
 @withRouter
@@ -26,6 +26,10 @@ class Comments extends Component {
       id: this.props.params.id,
     }
     this.props.requestComments(data)
+  }
+
+  componentWillUnmount() {
+    this.props.removeComments
   }
 
   render() {

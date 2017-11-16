@@ -23,7 +23,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 @connect(mapStateToProps, mapDispatchToProps)
 class Header extends React.Component<Props> {
   componentWillMount() {
-    console.log(this.props)
   }
   render() {
     return (

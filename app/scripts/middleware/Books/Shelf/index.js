@@ -6,7 +6,7 @@ import { receiveBookShelf } from '../../../actions/Books/Shelf'
 
 export function* bookShelfSaga(action) {
   try {
-    const result = yield axios.get(`${API.BOOK}?props=title%2Cauthor%2Cimage&sortBy=created%20desc`, config(action.data.token))
+    const result = yield axios.get(`${API.BOOK}?props=title%2Cauthor%2Cimage&pageSize=100&sortBy=created%20desc`, config(action.data.token))
     if (result.status === 200) {
       const books = result.data.map(item => ({
         id: item.objectId,

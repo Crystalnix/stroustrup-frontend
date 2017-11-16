@@ -6,11 +6,11 @@ import API from '../../../constants/API'
 
 export function* historyUserGetSaga(action) {
   try {
-    const result = yield axios.get(`${API.HISTORY}?where=userId%3D${action.data.userId}&sortBy=created%20desc`, config(action.data.token))
+    const result = yield axios.get(`${API.HISTORY}?where=userId%3D'${action.data.userId}'&pageSize=100&sortBy=created%20desc`, config(action.data.token))
     if (result) {
+      let books = []
       if (result.data[0]) {
         let i = 0
-        let books = []
         for (; i < result.data.length; i++) {
           const book = yield axios.get(`${API.BOOK}/${result.data[i].bookId}`)
           books[i] = {
@@ -25,8 +25,9 @@ export function* historyUserGetSaga(action) {
         const receiveData = {
           books,
         }
-        console.log(receiveData)
         yield put(receiveHistoryUserGet(receiveData))
+      } else {
+        yield put(receiveHistoryUserGet({ books }))
       }
     }
   } catch (error) {

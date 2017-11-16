@@ -22,10 +22,15 @@ export const SET_USER: string = 'SET_USER'
 export const DELETE_USER: string = 'DELETE_USER'
 export const CHANGE_DRAWER: string = 'CHANGE_DRAWER'
 export const SET_DESCRIPTION: string = 'SET_DESCRIPTION'
+
 export const REQUEST_COMMENTS: string = 'REQUEST_COMMENTS'
 export const RECEIVE_COMMENTS: string = 'RECEIVE_COMMENTS'
+export const REMOVE_COMMENTS: string = 'REMOVE_COMMENTS'
+
 export const REQUEST_COMMENT_ADD: string = 'REQUEST_COMMENT_ADD'
 export const RECEIVE_COMMENT_ADD: string = 'RECEIVE_COMMENT_ADD'
+export const REMOVE_COMMENT_ADD: string = 'REMOVE_COMMENT_ADD'
+
 export const COMMENTS_REFRESH: string = 'COMMENTS_REFRESH'
 
 export const REQUEST_BOOK_SET_OWNER: string = 'REQUEST_BOOK_SET_OWNER'

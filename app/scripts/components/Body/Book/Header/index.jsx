@@ -8,7 +8,6 @@ import History from './History'
 
 class Header extends React.PureComponent {
   render() {
-    console.log(this.props)
     return (
       <div>
         <Default>

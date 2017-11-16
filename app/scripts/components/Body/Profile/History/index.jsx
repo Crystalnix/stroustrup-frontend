@@ -27,7 +27,6 @@ const mapDispachToProps = dispatch => bindActionCreators({
 @connect(mapStateToProps, mapDispachToProps)
 class History extends Component {
   componentWillMount() {
-    console.log(this.props)
     const requesData = {
       userId: this.props.params.id,
       token: this.props.user.token,

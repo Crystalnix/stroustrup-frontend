@@ -19,7 +19,9 @@ const form = {
   form: 'register',
 }
 
-const mapStateToProps = () => ({})
+const mapStateToProps = state => ({
+  register: state.users.register,
+})
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   requestRegister,
@@ -28,9 +30,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 @connect(mapStateToProps, mapDispatchToProps)
 @reduxForm(form)
 class Login extends React.Component {
-  componentDidMount() {
-  }
-
   submit = (values) => {
     this.props.requestRegister(values)
   }

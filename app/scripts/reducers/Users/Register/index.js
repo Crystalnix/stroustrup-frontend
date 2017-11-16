@@ -1,24 +1,21 @@
-// @flow
 import { REQUEST_REGISTER, RECEIVE_REGISTER } from '../../../constants/ActionTypes'
-import type { Fetch } from '../../types'
-import type {
-  Action,
-  SignAction,
-} from '../../../actions/types'
 
-const initialState: Fetch = {
+const initialState = {
   isFetching: false,
+  loaded: false,
 }
 
-const registerReducer = (state: Fetch = initialState, action: Action | SignAction) => {
+const registerReducer = (state = initialState, action) => {
   switch (action.type) {
   case REQUEST_REGISTER:
     return {
       isFetching: true,
+      loaded: false,
     }
   case RECEIVE_REGISTER:
     return {
       isFetching: false,
+      loaded: true,
     }
   default:
     return state

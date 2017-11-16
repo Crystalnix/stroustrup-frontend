@@ -1,5 +1,6 @@
 // @flow
 import React from 'react'
+import { withRouter } from 'react-router'
 import { reduxForm, Field } from 'redux-form'
 import { bindActionCreators } from 'redux'
 import {
@@ -7,8 +8,9 @@ import {
 } from 'redux-form-material-ui'
 import { RaisedButton } from 'material-ui'
 import { connect } from 'react-redux'
-import { requestBookAdd } from '../../../../actions/Books/Add'
-import type { BookAddToken } from '../../../config/types'
+import type { BookAddToken } from '../../../../config/types'
+import { requestBookAdd, removeBookAdd } from '../../../../actions/Books/Add'
+import { removeBookIsbn } from '../../../../actions/Books/Isbn'
 
 const required = value => (value == null ? 'Required' : undefined)
 
@@ -22,17 +24,29 @@ const style = {
 }
 
 const mapStateToProps = state => ({
+  add: state.books.add,
   initialValues: state.books.isbn,
   token: state.users.get.token,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   requestBookAdd,
+  removeBookAdd,
+  removeBookIsbn,
 }, dispatch)
 
+@withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 @reduxForm(form)
 class AddForm extends React.Component {
+  componentWillMount() {
+    if (this.props.add.id) {
+      this.props.removeBookIsbn()
+      this.props.removeBookAdd()
+      this.props.router.push(`/book/${this.props.add.id}`)
+    }
+  }
+
   submit = (values) => {
     if (delete values.isFetching) {
       const data: BookAddToken = {

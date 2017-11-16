@@ -21,7 +21,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 class Logout extends React.Component {
   static muiName = 'IconMenu';
   render() {
-    console.log(this.props)
     return (
       <IconMenu
         iconStyle={this.props.iconStyle}

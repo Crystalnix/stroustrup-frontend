@@ -18,7 +18,7 @@ export function* commentAddSaga(action) {
       console.error(result.status, ': ', result.statusText)
     }
   } catch (error) {
-    return error.message
+    console.error(error.message)
   }
   return 0
 }

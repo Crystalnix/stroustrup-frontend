@@ -2,14 +2,14 @@
 import {
   REQUEST_COMMENT_ADD,
   RECEIVE_COMMENT_ADD,
-  COMMENTS_REFRESH,
+  REMOVE_COMMENT_ADD,
 } from '../../../constants/ActionTypes'
 
 const initialState: any = {
   isFetching: false,
 }
 
-const addReducer = (state = initialState, action) => {
+const addReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
     case REQUEST_COMMENT_ADD:
       return {
@@ -19,6 +19,8 @@ const addReducer = (state = initialState, action) => {
       return {
         isFetching: false,
       }
+    case REMOVE_COMMENT_ADD:
+      return initialState
     default:
       return state
   }

@@ -24,7 +24,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 @reduxForm(form)
 class IsbnForm extends React.Component {
   submit = (values) => {
-    console.log(values)
     this.props.requestBookIsbn(values)
   }
 

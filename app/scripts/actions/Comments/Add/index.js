@@ -1,7 +1,7 @@
 import {
   REQUEST_COMMENT_ADD,
   RECEIVE_COMMENT_ADD,
-  COMMENTS_REFRESH,
+  REMOVE_COMMENT_ADD,
 } from '../../../constants/ActionTypes'
 
 export function requestCommentAdd(data) {
@@ -14,5 +14,11 @@ export function requestCommentAdd(data) {
 export function receiveCommentAdd() {
   return {
     type: RECEIVE_COMMENT_ADD,
+  }
+}
+
+export function removeCommentAdd() {
+  return {
+    type: REMOVE_COMMENT_ADD,
   }
 }

@@ -7,8 +7,6 @@ import { Default, Mobile } from '../../../../config/responsive'
 import Comments from './Comments/index'
 
 class Aricle extends PureComponent {
-  componentWillMount() {
-  }
   render() {
     return (
       <div>
