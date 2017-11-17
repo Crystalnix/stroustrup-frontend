@@ -6,10 +6,6 @@ import Body from './Body/index'
 
 @withRouter
 class App extends React.Component {
-  componentWillMount() {
-    // this.props.router.push('/book')
-  }
-
   render() {
     return (
       <MuiThemeProvider>

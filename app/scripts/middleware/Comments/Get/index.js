@@ -38,7 +38,7 @@ export function* commentsSaga(action) {
     }))
     yield put(receiveComments({ comments }))
   } catch (error) {
-    return error.message
+    console.error(error.message)
   }
   return 0
 }

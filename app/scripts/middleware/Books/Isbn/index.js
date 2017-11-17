@@ -9,7 +9,6 @@ export function* bookIsbnSaga(action) {
     method: 'GET',
     url,
   })
-  console.log(response)
   if (response.data.totalItems !== 0) {
     const result = response.data.items[0].volumeInfo
     const receiveData = {
